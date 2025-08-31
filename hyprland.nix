@@ -18,7 +18,7 @@
   ];
 
 
-  programs.kitty.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
@@ -248,7 +248,7 @@
 ###################
 
 # See https://wiki.hyprland.org/Configuring/Keywords/
-      #"SUPER = SUPER" # Sets "Windows" key as main modifier
+      #"SUPER = $mod" # Sets "Windows" key as main modifier
       # "$fileManager = dolphin"
       # "$terminal = kitty"
       # "$menu = rofi"
@@ -257,49 +257,49 @@
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 
       bind = [
-        "SUPER, T, exec, kitty"
-        "SUPER, K, killactive,"
-        "SUPER, L , exit,"
-        "SUPER, D, exec, dolphin"
-        "SUPER, F, togglefloating,"
-        "SUPER, R, exec, wofi --show drun"
-        "SUPER, A, pseudo,"
-        "SUPER, S, togglesplit,"
-        "SUPER, B, exec, firefox"
-        "SUPER, +, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
-        "SUPER, left, movefocus, l"
-        "SUPER, right, movefocus, r"
-        "SUPER, up, movefocus, u"
-        "SUPER, down, movefocus, d"
-        "SUPER, 1, workspace, 1"
-        "SUPER, 2, workspace, 2"
-        "SUPER, 3, workspace, 3"
-        "SUPER, 4, workspace, 4"
-        "SUPER, 5, workspace, 5"
-        "SUPER, 6, workspace, 6"
-        "SUPER, 7, workspace, 7"
-        "SUPER, 8, workspace, 8"
-        "SUPER, 9, workspace, 9"
-        "SUPER, 0, workspace, 10"
-        "SUPER SHIFT, 1, movetoworkspace, 1"
-        "SUPER SHIFT, 2, movetoworkspace, 2"
-        "SUPER SHIFT, 3, movetoworkspace, 3"
-        "SUPER SHIFT, 4, movetoworkspace, 4"
-        "SUPER SHIFT, 5, movetoworkspace, 5"
-        "SUPER SHIFT, 6, movetoworkspace, 6"
-        "SUPER SHIFT, 7, movetoworkspace, 7"
-        "SUPER SHIFT, 8, movetoworkspace, 8"
-        "SUPER SHIFT, 9, movetoworkspace, 9"
-        "SUPER SHIFT, 0, movetoworkspace, 10"
-        "SUPER, S, togglespecialworkspace, magic"
-        "SUPER SHIFT, S, movetoworkspace, special:magic"
-        "SUPER, mouse_down, workspace, e+1"
-        "SUPER, mouse_up, workspace, e-1"
+        "$mod, T, exec, kitty"
+        "$mod, K, killactive,"
+        "$mod, L , exit,"
+        "$mod, D, exec, dolphin"
+        "$mod, F, togglefloating,"
+        "$mod, R, exec, wofi --show drun"
+        "$mod, A, pseudo,"
+        "$mod, S, togglesplit,"
+        "$mod, B, exec, firefox"
+        "$mod, +, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "$mod, 1, workspace, 1"
+        "$mod, 2, workspace, 2"
+        "$mod, 3, workspace, 3"
+        "$mod, 4, workspace, 4"
+        "$mod, 5, workspace, 5"
+        "$mod, 6, workspace, 6"
+        "$mod, 7, workspace, 7"
+        "$mod, 8, workspace, 8"
+        "$mod, 9, workspace, 9"
+        "$mod, 0, workspace, 10"
+        "$mod SHIFT, 1, movetoworkspace, 1"
+        "$mod SHIFT, 2, movetoworkspace, 2"
+        "$mod SHIFT, 3, movetoworkspace, 3"
+        "$mod SHIFT, 4, movetoworkspace, 4"
+        "$mod SHIFT, 5, movetoworkspace, 5"
+        "$mod SHIFT, 6, movetoworkspace, 6"
+        "$mod SHIFT, 7, movetoworkspace, 7"
+        "$mod SHIFT, 8, movetoworkspace, 8"
+        "$mod SHIFT, 9, movetoworkspace, 9"
+        "$mod SHIFT, 0, movetoworkspace, 10"
+        "$mod, S, togglespecialworkspace, magic"
+        "$mod SHIFT, S, movetoworkspace, special:magic"
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
       ];
 
       bindm = [
-        "SUPER, mouse:272, movewindow"
-        "SUPER, mouse:273, resizewindow"
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
 
       bindel = [  # Laptop multimedia keys for volume and LCD brightness

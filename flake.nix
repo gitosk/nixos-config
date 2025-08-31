@@ -10,7 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
   }; 
 
-  outputs = { self, nixpkgs, home-manager, ...}:  # This 3 expressions to pass lib into nixpkgs
+  outputs = inputs@{nixpkgs, home-manager, ...}:  # This 3 expressions to pass lib into nixpkgs
     let                                  
       lib = nixpkgs.lib;
       system = "x86_64-linux";

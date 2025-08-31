@@ -4,8 +4,9 @@
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
-  #   ./hyprland.nix
+  #  ./hyprland.nix  # This is not tested yet
     ./sh.nix
+    ./hyprland-config.nix
   ];
 
 
@@ -13,6 +14,17 @@
   # manage.
   home.username = "osk";
   home.homeDirectory = "/home/osk";
+
+  # Hyprland on the Home Manager
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+    package = null;
+    portalPackage = null;
+  };
+
+
 
   # Git config
 
