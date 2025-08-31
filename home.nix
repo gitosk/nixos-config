@@ -11,7 +11,7 @@ in
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   # imports = [
-  #   hyprland.nix 
+  #   ./hyprland.nix
   # ];
 
 
@@ -19,7 +19,9 @@ in
   # manage.
   home.username = "osk";
   home.homeDirectory = "/home/osk";
-  
+
+  # Git config
+
   programs.git = {
     enable = true;
     userName = "gitosk";
