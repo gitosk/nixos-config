@@ -1,8 +1,29 @@
 {
+  home.packages = with pkgs; [
+  dunst
+  pipewire
+  hyprpolkitagent
+  qt5-wayland
+  qt6-wayland
+  noto-fonts
+  waybar
+  hyprpaper
+  wireplumber
+  wofi
+  hyprpicker
+  cliphist
+  dolphin
+  iwgtk # wifi settings
+  blueberry #bluetooth settings
+  ];
+
+
+  programs.kitty.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-
+    #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     setings = {
 
@@ -12,27 +33,27 @@
 
 
 ################
-### MONITORS ###
+### MONITORS
 ################
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = ",preferred,auto,auto"
+      monitor = ",preferred,auto,auto";
 
 
 ###################
-### MY PROGRAMS ###
+### MY PROGRAMS
 ###################
 
     # See https://wiki.hyprland.org/Configuring/Keywords/
 
     # Set programs that you use
-      "$terminal = kitty"
-      "$fileManager = dolphin"
-      "$menu = wofi --show drun"
+    #  "$terminal = kitty"
+    #  "$fileManager = dolphin"
+    #  "$menu = wofi --show drun"
 
 
 #################
-### AUTOSTART ###
+### AUTOSTART
 #################
 
     # Autostart necessary processes (like notifications daemons, status bars, etc.)
@@ -41,13 +62,18 @@
     # exec-once = $terminal
     # exec-once = nm-applet &
 
-      exec-once = [ "waybar & hyprpaper & dunst"
+      exec-once =
+      [
+        "waybar & hyprpaper & dunst"
         "cliphist"
+        "systemctl --user start hyprpolkitagent"
+        "wl-paste --type text --watch cliphist store" # Stores only text data
+        "wl-paste --type image --watch cliphist store" # Stores only image data
       ];
 
 
 #############################
-### ENVIRONMENT VARIABLES ###
+### ENVIRONMENT VARIABLES
 #############################
 
     # See https://wiki.hyprland.org/Configuring/Environment-variables/
@@ -59,7 +85,7 @@
 
 
 ###################
-### PERMISSIONS ###
+### PERMISSIONS
 ###################
 
 # See https://wiki.hyprland.org/Configuring/Permissions/
@@ -76,7 +102,7 @@
 
 
 #####################
-### LOOK AND FEEL ###
+### LOOK AND FEEL
 #####################
 
 # Refer to https://wiki.hyprland.org/Configuring/Variables/
@@ -173,7 +199,7 @@
 
 # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
       master = {
-        new_status = master;
+        new_status = "master";
       };
 
 # https://wiki.hyprland.org/Configuring/Variables/#misc
@@ -184,16 +210,16 @@
 
 
 #############
-### INPUT ###
+### INPUT
 #############
 
 # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         kb_layout = "de";
-        kb_variant = ;
-        kb_model = ;
-        kb_options = ;
-        kb_rules = ;
+        # kb_variant = ;
+        # kb_model = ;
+        # kb_options = ;
+        # kb_rules = ;
 
         follow_mouse = 1;
 
@@ -212,67 +238,68 @@
 # Example per-device config
 # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
       device = {
-        name = epic-mouse-v1;
+        name = "epic-mouse-v1";
         sensitivity = -0.5;
       };
 
 
 ###################
-### KEYBINDINGS ###
+### KEYBINDINGS
 ###################
 
 # See https://wiki.hyprland.org/Configuring/Keywords/
-      "$mainMod = SUPER" # Sets "Windows" key as main modifier"""""
-      "$fileManager = dolphin"
-      "$terminal = kitty"
-      "$menu = rofi"
-      "$browser = firefox"
+      #"SUPER = SUPER" # Sets "Windows" key as main modifier
+      # "$fileManager = dolphin"
+      # "$terminal = kitty"
+      # "$menu = rofi"
+      # "$browser = firefox"
 
 # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
 
       bind = [
-        "$mainMod, T, exec, $terminal"
-        "$mainMod, K, killactive,"
-        "$mainMod, L , exit,"
-        "$mainMod, D, exec, $fileManager"
-        "$mainMod, F, togglefloating,"
-        "$mainMod, R, exec, $menu"
-        "$mainMod, A, pseudo,"
-        "$mainMod, S, togglesplit,"
-        "$mainMod, B, exec, $browser"
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
-        "$mainMod, 6, workspace, 6"
-        "$mainMod, 7, workspace, 7"
-        "$mainMod, 8, workspace, 8"
-        "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
-        "$mainMod SHIFT, 6, movetoworkspace, 6"
-        "$mainMod SHIFT, 7, movetoworkspace, 7"
-        "$mainMod SHIFT, 8, movetoworkspace, 8"
-        "$mainMod SHIFT, 9, movetoworkspace, 9"
-        "$mainMod SHIFT, 0, movetoworkspace, 10"
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
+        "SUPER, T, exec, kitty"
+        "SUPER, K, killactive,"
+        "SUPER, L , exit,"
+        "SUPER, D, exec, dolphin"
+        "SUPER, F, togglefloating,"
+        "SUPER, R, exec, wofi --show drun"
+        "SUPER, A, pseudo,"
+        "SUPER, S, togglesplit,"
+        "SUPER, B, exec, firefox"
+        "SUPER, +, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        "SUPER, left, movefocus, l"
+        "SUPER, right, movefocus, r"
+        "SUPER, up, movefocus, u"
+        "SUPER, down, movefocus, d"
+        "SUPER, 1, workspace, 1"
+        "SUPER, 2, workspace, 2"
+        "SUPER, 3, workspace, 3"
+        "SUPER, 4, workspace, 4"
+        "SUPER, 5, workspace, 5"
+        "SUPER, 6, workspace, 6"
+        "SUPER, 7, workspace, 7"
+        "SUPER, 8, workspace, 8"
+        "SUPER, 9, workspace, 9"
+        "SUPER, 0, workspace, 10"
+        "SUPER SHIFT, 1, movetoworkspace, 1"
+        "SUPER SHIFT, 2, movetoworkspace, 2"
+        "SUPER SHIFT, 3, movetoworkspace, 3"
+        "SUPER SHIFT, 4, movetoworkspace, 4"
+        "SUPER SHIFT, 5, movetoworkspace, 5"
+        "SUPER SHIFT, 6, movetoworkspace, 6"
+        "SUPER SHIFT, 7, movetoworkspace, 7"
+        "SUPER SHIFT, 8, movetoworkspace, 8"
+        "SUPER SHIFT, 9, movetoworkspace, 9"
+        "SUPER SHIFT, 0, movetoworkspace, 10"
+        "SUPER, S, togglespecialworkspace, magic"
+        "SUPER SHIFT, S, movetoworkspace, special:magic"
+        "SUPER, mouse_down, workspace, e+1"
+        "SUPER, mouse_up, workspace, e-1"
       ];
 
       bindm = [
-        "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow"
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
       ];
 
       bindel = [  # Laptop multimedia keys for volume and LCD brightness
@@ -296,7 +323,7 @@
 
 
 ##############################
-### WINDOWS AND WORKSPACES ###
+### WINDOWS AND WORKSPACES
 ##############################
 
 # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
