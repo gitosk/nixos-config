@@ -4,28 +4,32 @@
 
   home.packages = with pkgs; [
   dunst
-  pipewire
-  hyprpolkitagent
+  pipewire            # App Comunication
+  hyprpolkitagent     # Notifications
   qadwaitadecorations # qt 5 and 6
   noto-fonts
   waybar
-  hyprpaper
-  wireplumber
-  wofi
+  hyprpaper    # Wallpaper
+  wireplumber  # For App-Comunication
+  wofi      # Menu
   hyprpicker
-  cliphist
+  cliphist  # Clipboard manager
   kdePackages.dolphin
-  iwgtk # wifi settings
-  blueberry #bluetooth settings
-  kitty
-  grimblast
+  iwgtk     # Wifi settings
+  blueberry # Bluetooth settings
+  kitty     # Terminal emulator
+  grimblast # For Screenshots
   ];
+
+  
 
 
   programs.waybar.enable = true;
   programs.hyprlock.enable = true;
   programs.kitty.enable = true;
-  services.hyprpaper = {
+  
+
+  services.hyprpaper = {   # Wallpaper Config
     enable = true;
     settings = {
       preload = [
@@ -39,7 +43,11 @@
       ];
     };
   };
-  wayland.windowManager.hyprland.settings = {
+  
+
+
+
+  wayland.windowManager.hyprland.settings = {   # General Settings
 
 
 
@@ -256,7 +264,20 @@
 
     # MONITORS
 
-    monitor = ",preferred,auto, 2";
+    monitor = [
+    # "Name or Description    , res      , abs-pos     , scaling "
+
+      "desc:ViewSonic Corporation VX3211-2K V3G191100694  , 2560x1440 , 0x0      , 1.6      "
+    
+      "desc:Najing CEC Panda FPD Technology CO. ltd 0x0040, 1920x1080 , 1600x900 , 2        "
+      
+      "desc:FMX Xiaomi L1 0x00000001                      , 1920x1080 , -320x-180  , 1        "
+
+      "                                                   , preferred , auto     , 1        "
+    ];
+    
+    # the abs-pos takes scaling into account
+    # monitor = ",preferred,auto, 2"; default settings
 
 
     # PERMISIONS : Research how do they work
