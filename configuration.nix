@@ -117,7 +117,7 @@
      git
      kitty
      firefox
-
+     unzip
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

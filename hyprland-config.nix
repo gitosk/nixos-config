@@ -21,8 +21,24 @@
   grimblast
   ];
 
-  programs.kitty.enable = true;
 
+  programs.waybar.enable = true;
+  programs.hyprlock.enable = true;
+  programs.kitty.enable = true;
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [
+        "~/Pictures/Fondos/Fondo DST_2.png" 
+        #  "~/Pictures/Fondos/Fondo DST_1.png"
+      ];
+
+      wallpaper = [
+        ",~/Pictures/Fondos/Fondo DST_2.png"
+	#  ",~/Pictures/Fondos/Fondo DST_1.png"
+      ];
+    };
+  };
   wayland.windowManager.hyprland.settings = {
 
 
@@ -115,20 +131,21 @@
     # Change transparency of focused and unfocused windows
       active_opacity = 0.95;
       inactive_opacity = 0.95;
-    };
-    shadow = {
-      enabled = true;
-      range = 4;
-      render_power = 3;
-      color = "rgba(1a1a1aee)";
-    };
+    
+      shadow = {
+        enabled = true;
+        range = 4;
+        render_power = 3;
+        color = "rgba(1a1a1aee)";
+      };
 
     # https://wiki.hyprland.org/Configuring/Variables/#blur
-    blur = {
-      enabled = true;
-      size = 3;
-      passes = 1;
-      vibrancy = 0.1696;
+      blur = {
+        enabled = true;
+        size = 3;
+        passes = 1;
+        vibrancy = 0.1696;
+      };
     };
 
 
@@ -239,7 +256,7 @@
 
     # MONITORS
 
-    monitor = ",preferred,auto,auto";
+    monitor = ",preferred,auto, 2";
 
 
     # PERMISIONS : Research how do they work
@@ -274,6 +291,7 @@
 	"dunst"
         "cliphist"
         "systemctl --user start hyprpolkitagent"
+	"systemctl --user enable --now hyprpaper.service"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
       ];
