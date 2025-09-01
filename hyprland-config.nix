@@ -273,7 +273,7 @@
       
       "desc:FMX Xiaomi L1 0x00000001                      , 1920x1080 , -320x-180  , 1        "
 
-      "                                                   , preferred , auto     , 1        "
+      "                                                   , preferred , -320x-180   , 1        "
     ];
     
     # the abs-pos takes scaling into account
