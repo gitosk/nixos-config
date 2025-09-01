@@ -3,7 +3,7 @@
 {
 
   home.packages = with pkgs; [
-  dunst
+  ags                 # dunst "replacement" needed for hyprpanel
   pipewire            # App Comunication
   hyprpolkitagent     # Notifications
   qadwaitadecorations # qt 5 and 6
@@ -25,29 +25,55 @@
   
 
 
-  programs.waybar.enable = true;
+  
   programs.hyprlock.enable = true;
   programs.kitty.enable = true;
   
 
+  programs.hyprpanel = {
+    enable = true;
+    settings = {
+
+      # Configure bar layouts for monitors.
+      # See 'https://hyprpanel.com/configuration/panel.html'.
+      # Default: null
+
+      layout = {
+        bar.layouts = {
+          "0" = {
+            left = [ "dashboard" "workspaces" ];
+            middle = [ "media" ];
+            right = [ "volume" "systray" "notifications" ];
+          };
+        };
+      };
+
+      bar.launcher.autoDetectIcon = true;
+      bar.workspaces.show_icons = true;
+
+      menus.clock = {
+        time = {
+          military = true;
+          hideSeconds = true;
+        };
+        weather.unit = "metric";
+      };
+
+      menus.dashboard.directories.enabled = false;
+      menus.dashboard.stats.enable_gpu = true;
+
+      theme.bar.transparent = true;
+
+      theme.font = {
+        name = "CaskaydiaCove NF";
+        size = "14px";
+      };
+    };
+  };
 
 
 
 
-
-  programs.waybar.style = "       
-   *{
-    border: none;
-    border-radius: 0;
-    font-family: Source Code Pro;
-  }
-  window#waybar {
-    background: #16191C;
-    color: #000000;
-  }
-  #workspaces button {
-    padding: 0 5px;
-  }"; # this a copypasta for testing
 
 
 
@@ -329,10 +355,10 @@
     # AUTOSTART
 
     exec-once = [
-        "waybar"
 	"hyprpaper"
+	"hyprpanel"
 	"hypridle"
-	"dunst"
+	"ags"
         "cliphist"
         "systemctl --user start hyprpolkitagent"
 	"systemctl --user enable --now hyprpaper.service"

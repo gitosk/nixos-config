@@ -6,6 +6,9 @@ let                # Creating variables
     ".." = "cd ..";
     ssh1 = "eval $(ssh-agent)";     # Both of these to reload the ssh key
     ssh2 = "ssh-add ~/.ssh/id_ed25519";
+    hy   = "hyprland";
+    co = "cd ~/.dotfiles/";
+    
   };
 in
 
