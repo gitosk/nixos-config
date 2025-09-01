@@ -10,6 +10,7 @@
   noto-fonts
   waybar
   hyprpaper    # Wallpaper
+  hypridle     # Testing
   wireplumber  # For App-Comunication
   wofi      # Menu
   hyprpicker
@@ -28,6 +29,27 @@
   programs.hyprlock.enable = true;
   programs.kitty.enable = true;
   
+
+
+
+
+
+
+  programs.waybar.style = "       
+   *{
+    border: none;
+    border-radius: 0;
+    font-family: Source Code Pro;
+  }
+  window#waybar {
+    background: #16191C;
+    color: #000000;
+  }
+  #workspaces button {
+    padding: 0 5px;
+  }"; # this a copypasta for testing
+
+
 
   services.hyprpaper = {   # Wallpaper Config
     enable = true;
@@ -309,6 +331,7 @@
     exec-once = [
         "waybar"
 	"hyprpaper"
+	"hypridle"
 	"dunst"
         "cliphist"
         "systemctl --user start hyprpolkitagent"
