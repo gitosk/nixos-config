@@ -19,7 +19,7 @@
   iwgtk     # Wifi settings
   blueberry # Bluetooth settings
   kitty     # Terminal emulator
-  grimblast # For Screenshots
+  hyprshot # For Screenshots
   ];
 
   
@@ -63,14 +63,15 @@
     "$mod" = "SUPER";
     "$terminal" = "kitty";
     "$browser" = "firefox";
-    bind =
-      [
+    "$files" = "dolphin";
+
+
+    bind = [
         "$mod, F, exec, $browser"
-        ", Print, exec, grimblast copy area"
         "$mod, T, exec, $terminal"
+        "$mod, D, exec, $files"
         "$mod, K, killactive,"
         "$mod, L , exit,"
-        "$mod, D, exec, dolphin"
         "$mod, W, togglefloating,"
         "$mod, R, exec, wofi --show drun"
         "$mod, A, pseudo,"
@@ -80,10 +81,16 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-        "$mod, M, togglespecialworkspace, magic"
-        "$mod SHIFT, S, movetoworkspace, special:magic"
+
+        "    , Print, exec, hyprshot -m window --clipboard-only"  # capture active window
+	"$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" # capture region
+
+	"$mod, M, togglespecialworkspace, magic"
+        "$mod SHIFT, M, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e-1"
         "$mod, mouse_up, workspace, e+1"
+
+
       ]
       ++ (
         # workspaces
@@ -129,8 +136,8 @@
     general = {
       gaps_in = 1;
       gaps_out = 1;
-      border_size = 2;
-      "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+      border_size = 1;
+      "col.active_border" = "rgb(198,160,246) rgb(139,213,202)";
       "col.inactive_border" = "rgba(595959aa)";
 
     # Set to true enable resizing windows by clicking and dragging on borders and gaps
@@ -163,9 +170,10 @@
     # https://wiki.hyprland.org/Configuring/Variables/#blur
       blur = {
         enabled = true;
-        size = 3;
+        size = 10;
         passes = 1;
         vibrancy = 0.1696;
+	ignore_opacity = true;
       };
     };
 
@@ -310,6 +318,7 @@
     env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
+	"HYPRSHOT_DIR,~/Pictures/Screenshots"
     ];
 
 
