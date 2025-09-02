@@ -30,45 +30,50 @@
   programs.kitty.enable = true;
   
 
+
+
+
   programs.hyprpanel = {
     enable = true;
-    settings = {
+    #settings = {
 
       # Configure bar layouts for monitors.
       # See 'https://hyprpanel.com/configuration/panel.html'.
       # Default: null
 
-      layout = {
-        bar.layouts = {
-          "0" = {
-            left = [ "dashboard" "workspaces" ];
-            middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
-          };
-        };
-      };
+     # layout = {
+     #   bar.layouts = {
+      #    "0" = {
+       #     left = [ "dashboard" "media" ];
+        #    middle = [ "workspaces" ];
+         #   right = [ "volume"  "notifications" "systray"];
+  #        };
+  #      };
+  #    };
 
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
+   #   bar.launcher.autoDetectIcon = true;
+    #  bar.workspaces.show_icons = true;
 
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
-        };
-        weather.unit = "metric";
-      };
+#      menus.clock = {
+ #       time = {
+  #        military = true;
+   #       hideSeconds = true;
+    #    };
+     #   weather.unit = "metric";
+ #     };
+#
+ #     menus.dashboard.directories.enabled = false;
+  #    menus.dashboard.stats.enable_gpu = true;
 
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = true;
+   #   theme.bar.transparent = true;
 
-      theme.bar.transparent = true;
+ #     theme.font = {
+  #      name = "CaskaydiaCove NF";
+   #     size = "14px";
 
-      theme.font = {
-        name = "CaskaydiaCove NF";
-        size = "14px";
-      };
-    };
+      
+   #   };
+   # };
   };
 
 
@@ -361,9 +366,11 @@
 	"ags"
         "cliphist"
         "systemctl --user start hyprpolkitagent"
+	"dbus-update-activation-environment --systemd --all"
 	"systemctl --user enable --now hyprpaper.service"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
+	"hyprlock"
       ];
 
 

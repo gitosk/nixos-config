@@ -17,6 +17,13 @@
   # Enable Hyprland
 
   programs.hyprland.enable = true; # enable Hyprland
+  services.displayManager = {
+    autoLogin.enable = true;
+    autoLogin.user = "osk";
+    defaultSession = "hyprland";
+    sddm.enable = true;
+    sddm.wayland.enable = true;
+  };
 
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -59,7 +66,7 @@
 
   # Enable the KDE Plasma Desktop Environment.
   # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
+    services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb = {
