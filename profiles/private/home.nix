@@ -4,9 +4,8 @@
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
-  #  ./hyprland.nix  # This is not tested yet
-    ./sh.nix
-    ./hyprland-config.nix
+    ../../system/WM/hyprland.nix
+    ../../system/apps/sh.nix
   ];
 
 
