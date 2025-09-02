@@ -49,7 +49,11 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
+
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
+    discord
     
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

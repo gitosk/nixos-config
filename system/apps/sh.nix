@@ -8,6 +8,7 @@ let                # Creating variables
     ssh2 = "ssh-add ~/.ssh/id_ed25519";
     ph   = "cd ~/.dotfiles/profiles/private/";
     co = "cd ~/.dotfiles/";
+    hy = "cd ~/.dotfiles/system/WM";
     
   };
 in

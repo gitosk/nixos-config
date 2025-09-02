@@ -29,55 +29,7 @@
   programs.hyprlock.enable = true;
   programs.kitty.enable = true;
   
-
-
-
-
-  programs.hyprpanel = {
-    enable = true;
-    #settings = {
-
-      # Configure bar layouts for monitors.
-      # See 'https://hyprpanel.com/configuration/panel.html'.
-      # Default: null
-
-     # layout = {
-     #   bar.layouts = {
-      #    "0" = {
-       #     left = [ "dashboard" "media" ];
-        #    middle = [ "workspaces" ];
-         #   right = [ "volume"  "notifications" "systray"];
-  #        };
-  #      };
-  #    };
-
-   #   bar.launcher.autoDetectIcon = true;
-    #  bar.workspaces.show_icons = true;
-
-#      menus.clock = {
- #       time = {
-  #        military = true;
-   #       hideSeconds = true;
-    #    };
-     #   weather.unit = "metric";
- #     };
-#
- #     menus.dashboard.directories.enabled = false;
-  #    menus.dashboard.stats.enable_gpu = true;
-
-   #   theme.bar.transparent = true;
-
- #     theme.font = {
-  #      name = "CaskaydiaCove NF";
-   #     size = "14px";
-
-      
-   #   };
-   # };
-  };
-
-
-
+  programs.hyprpanel.enable = true;
 
 
 
@@ -130,8 +82,8 @@
         "$mod, down, movefocus, d"
         "$mod, M, togglespecialworkspace, magic"
         "$mod SHIFT, S, movetoworkspace, special:magic"
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
+        "$mod, mouse_down, workspace, e-1"
+        "$mod, mouse_up, workspace, e+1"
       ]
       ++ (
         # workspaces
@@ -162,6 +114,11 @@
         ", XF86AudioPrev, exec, playerctl previous"
       ];
 
+    bindm = [
+      "$mod, mouse:272, movewindow"    # LMB
+      "$mod, mouse:273, resizewindow"  # RMB 
+    ];
+
 
 
 
@@ -183,6 +140,9 @@
       allow_tearing = false;
       layout = "dwindle";
     };
+
+
+
 
     # https://wiki.hyprland.org/Configuring/Variables/#decoration
     decoration  = {
@@ -207,6 +167,12 @@
         passes = 1;
         vibrancy = 0.1696;
       };
+    };
+
+    cursor = {
+    inactive_timeout = 1.5;
+    no_hardware_cursors = 1;   # Fixes anoying cursor flickering
+    default_monitor = "HDMI-A-1";
     };
 
 
@@ -289,7 +255,7 @@
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 
         touchpad = {
-        natural_scroll = false;
+        natural_scroll = true;
         };
 
 
@@ -306,12 +272,6 @@
         workspace_swipe = false;
       };
 
-# Example per-device config
-# See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-      device = {
-        name = "epic-mouse-v1";
-        sensitivity = -0.5;
-      };
 
 
 
@@ -329,17 +289,13 @@
       "                                                   , preferred , -320x-180   , 1        "
     ];
     
-    # the abs-pos takes scaling into account
-    # monitor = ",preferred,auto, 2"; default settings
-
-
     # PERMISIONS : Research how do they work
 
     #ecosystem = {
-    #  enforce_permissions = 1;
+    #  enforce_permissions = true;
     #};
 
-    #permision = [
+    #permission = [
     #"/usr/(bin|local/bin)/grim, screencopy, allow"
     #"/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow"
     #];
@@ -352,8 +308,8 @@
     #  ENVIROMENT VARIABLES
 
     env = [
-        "XCURSOR_SIZE,40"
-        "HYPRCURSOR_SIZE,40"
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
     ];
 
 
