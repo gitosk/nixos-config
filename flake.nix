@@ -2,7 +2,7 @@
 
 
 
-  description = "My first flake";
+  description = "My first flake - Private Profile";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Point to reepositories
@@ -19,13 +19,13 @@
     nixosConfigurations = {      # System configurations
       nixos = lib.nixosSystem {  # "nixos is the Hostname"
         inherit system;
-	modules = [ ./configuration.nix ];            # List of modules.nix files 
+	modules = [ ./system/configuration.nix ];            # List of modules.nix files
       };
     };
     homeConfigurations = {       # user configurations
       osk = home-manager.lib.homeManagerConfiguration { # "osk is the Hostname"
 	inherit pkgs;
-	modules = [ ./home.nix ];            # List of modules.nix files 
+	modules = [ ./profiles/private/home.nix ];            # List of modules.nix files
       };
     }; # What to do with them, the actual system
   };
