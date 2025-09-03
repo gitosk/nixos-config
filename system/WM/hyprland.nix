@@ -3,23 +3,22 @@
 {
 
   home.packages = with pkgs; [
-  ags                 # dunst "replacement" needed for hyprpanel
-  pipewire            # App Comunication
-  hyprpolkitagent     # Notifications
-  qadwaitadecorations # qt 5 and 6
-  noto-fonts
-  waybar
-  hyprpaper    # Wallpaper
-  hypridle     # Testing
-  wireplumber  # For App-Comunication
-  wofi      # Menu
-  hyprpicker
-  cliphist  # Clipboard manager
-  kdePackages.dolphin
-  iwgtk     # Wifi settings
-  blueberry # Bluetooth settings
-  kitty     # Terminal emulator
-  hyprshot # For Screenshots
+  ags                          # dunst "replacement" needed for hyprpanel
+  pipewire            	       # App Comunication
+  hyprpolkitagent     	       # Notifications
+  qadwaitadecorations          # qt 5 and 6
+  hyprpaper                    # Wallpaper
+  hypridle                     # Testing not working yet
+  wireplumber                  # For App-Comunication
+  wofi                         # Menu
+  hyprpicker                   # Pick color
+  cliphist                     # Clipboard manager
+  clipse		       # GUI for clipboard
+  kdePackages.dolphin          # File explorer
+  iwgtk                        # Wifi settings
+  blueberry                    # Bluetooth settings
+  kitty                        # Terminal emulator
+  hyprshot                     # For Screenshots
   ];
 
   
@@ -29,6 +28,7 @@
   programs.hyprlock.enable = true;
   programs.kitty.enable = true; 
   programs.hyprpanel.enable = true;
+
 
 
 
@@ -75,15 +75,14 @@
         "$mod, R, exec, wofi --show drun"
         "$mod, A, pseudo,"
         "$mod, S, togglesplit,"
-        "$mod, +, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy"
+        "$mod, +, exec, cliphist list"
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-
         "    , Print, exec, hyprshot -m window --clipboard-only"  # capture active window
 	"$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" # capture region
-
+        "$mod, V, exec,  $terminal --class clipse -e 'clipse'" 
 	"$mod, M, togglespecialworkspace, magic"
         "$mod SHIFT, M, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e-1"
@@ -108,12 +107,19 @@
         ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle" # Not bound
         ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
         ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
+    
+    # These work also when inputinhibitors "Lockscren" aree active
 
     bindl = [ # Requires playerctl
+        ", switch:Lid Switch, exec, hyprlock" # test if this work
+        ", switch:on:Lid Switch, exec, hyprctl keyword monitor eDP-1, disable"   # "on" means closing the lid
+        ", switch:off:Lid Switch, exec, hyprctl keyword monitor eDP-1, enable"
+
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPause, exec, playerctl play-pause"
         ", XF86AudioPlay, exec, playerctl play-pause"
@@ -251,7 +257,6 @@
       input = {
         kb_layout = "de";
         #resolve_binds_by_sym = true;   # makes the Keybinds -> kb_layout
-
         # kb_variant = ;
         # kb_model = ;
         # kb_options = ;
@@ -324,11 +329,11 @@
     # AUTOSTART
 
     exec-once = [
-	"hyprpaper"
 	"hyprpanel"
 	"hypridle"
 	"ags"
         "cliphist"
+	"clipse -listen"
         "systemctl --user start hyprpolkitagent"
 	"dbus-update-activation-environment --systemd --all"
 	"systemctl --user enable --now hyprpaper.service"
@@ -349,9 +354,14 @@
 
     # Ignore maximize requests from apps. You'll probably like this.
       windowrule = ["suppressevent maximize, class:.*"
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"  # Fix some dragging issues with XWayland
-      ];
+      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # Fix some dragging issues with XWayland
+      
+           ];
 
+      windowrulev2 = [
+      "float,class:(clipse)" # ensure you have a floating window class set if you want this behavior
+      "size 622 652,class:(clipse)" # set the size of the window
+      ];
 
 
 

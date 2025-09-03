@@ -1,6 +1,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -22,6 +22,9 @@
     sddm = {
       enable = true;
       wayland.enable = true;
+      settings = {
+	General.DisplayServer = "wayland";
+      };
     };
   };
 
@@ -137,13 +140,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     git
-     kitty
-     firefox
-     unzip
-     matugen
+     neovim			# editor 
+     wget			# forgot :P
+     git			# git
+     kitty			# terminal required for hyprland
+     firefox			# Browser
+     unzip			# Unzip
+     matugen			# Colors
+     brightnessctl		# Brightness control
+     #linuxKernel.packages.linux_zen.ddcci-driver # Kernel module driver external screen
+     wl-clipboard
   ];
   
 

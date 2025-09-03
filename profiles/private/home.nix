@@ -6,6 +6,8 @@
   imports = [
     ../../system/WM/hyprland.nix
     ../../system/apps/sh.nix
+  
+    #../../system/apps/
   ];
 
 
