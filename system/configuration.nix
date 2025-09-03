@@ -1,12 +1,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      # inputs.matugen.nixosModules.default
     ];
 
   # Bootloader.
@@ -23,9 +22,9 @@
     sddm = {
       enable = true;
       wayland.enable = true;
-      ];
     };
   };
+
 
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -92,11 +91,28 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
+  };
+
+
+  # Enable Bluethooth
+  
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = false;
+    settings = {
+      General = {
+        Experimental = true;  # Shows Battery charge on supported Bluethooth adapters
+      };  
+    };
+  };
+
+
+
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
+  
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;

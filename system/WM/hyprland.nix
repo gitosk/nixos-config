@@ -27,8 +27,7 @@
 
   
   programs.hyprlock.enable = true;
-  programs.kitty.enable = true;
-  
+  programs.kitty.enable = true; 
   programs.hyprpanel.enable = true;
 
 
