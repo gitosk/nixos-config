@@ -2,20 +2,25 @@
 
 {
 
+
+
   options = { # Define toggle option for this module
-    hyprland.enable = lib.mkEnableOption; # enables hyprland
+    hyprland.enable =
+      lib.mkEnableOption "enables hyprland" ; # enables hyprland
   };
 
   config = lib.mkIf config.hyprland.enable {
 
 
   programs.hyprland.enable = true; # enable Hyprland
+
+
   services.displayManager = {
     autoLogin.enable = true;
     autoLogin.user = "osk";
     defaultSession = "hyprland";
-    sddm = {
-      # enable = true; enabled in configuration.nix
+      sddm = {
+      enable = true; # enabled in configuration.nix
       wayland.enable = true;
       settings = {
 	General.DisplayServer = "wayland";
@@ -23,378 +28,18 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
+   environment.systemPackages = with pkgs; [
+   matugen
+   brightnessctl
+   wl-clipboard
+   ];
 
-  kitty                        # terminal required for hyprland
-  matugen                      # Colors
-  brightnessctl                # Brightness control
-  wl-clipboard
-  ags                          # dunst "replacement" needed for hyprpanel
-  pipewire            	       # App Comunication
-  hyprpolkitagent     	       # Notifications
-  qadwaitadecorations          # qt 5 and 6
-  hyprpaper                    # Wallpaper
-  hypridle                     # Testing not working yet
-  wireplumber                  # For App-Comunication
-  wofi                         # Menu
-  hyprpicker                   # Pick color
-  cliphist                     # Clipboard manager
-  clipse		       # GUI for clipboard
-  kdePackages.dolphin          # File explorer
-  iwgtk                        # Wifi settings
-  blueberry                    # Bluetooth settings
-  kitty                        # Terminal emulator
-  hyprshot                     # For Screenshots
-  ];
+
 
     fonts.packages = with pkgs; [
   noto-fonts
   nerd-fonts.symbols-only
   ];
-  
 
-
-  
-  programs.hyprlock.enable = true;
-  programs.kitty.enable = true; 
-  programs.hyprpanel.enable = true;
-
-
-
-
-
-  services.hyprpaper = {   # Wallpaper Config
-    enable = true;
-    settings = {
-      preload = [
-        "~/Pictures/Fondos/Fondo DST_2.png" 
-        #  "~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-
-      wallpaper = [
-        ",~/Pictures/Fondos/Fondo DST_2.png"
-	#  ",~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-    };
-  };
-  
-
-
-
-  wayland.windowManager.hyprland.settings = {   # General Settings
-
-
-
-
-    # Keybinds
-
-
-    "$mod" = "SUPER";
-    "$terminal" = "kitty";
-    "$browser" = "firefox";
-    "$files" = "dolphin";
-
-
-    bind = [
-        "$mod, F, exec, $browser"
-        "$mod, T, exec, $terminal"
-        "$mod, D, exec, $files"
-        "$mod, K, killactive,"
-        "$mod, L , exit,"
-        "$mod, W, togglefloating,"
-        "$mod, R, exec, wofi --show drun"
-        "$mod, A, pseudo,"
-        "$mod, S, togglesplit,"
-        "$mod, +, exec, cliphist list"
-        "$mod, left, movefocus, l"
-        "$mod, right, movefocus, r"
-        "$mod, up, movefocus, u"
-        "$mod, down, movefocus, d"
-        "    , Print, exec, hyprshot -m window --clipboard-only"  # capture active window
-	"$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" # capture region
-        "$mod, V, exec,  $terminal --class clipse -e 'clipse'" 
-	"$mod, M, togglespecialworkspace, magic"
-        "$mod SHIFT, M, movetoworkspace, special:magic"
-        "$mod, mouse_down, workspace, e-1"
-        "$mod, mouse_up, workspace, e+1"
-
-
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          9)
-      );
-
-    bindel = [  # Laptop multimedia keys for volume and LCD brightness
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle" # Not bound
-        ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
-      ];
-    
-    # These work also when inputinhibitors "Lockscren" aree active
-
-    bindl = [ # Requires playerctl
-        ", switch:Lid Switch, exec, hyprlock" # test if this work
-        ", switch:on:Lid Switch, exec, hyprctl keyword monitor eDP-1, disable"   # "on" means closing the lid
-        ", switch:off:Lid Switch, exec, hyprctl keyword monitor eDP-1, enable"
-
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
-      ];
-
-    bindm = [
-      "$mod, mouse:272, movewindow"    # LMB
-      "$mod, mouse:273, resizewindow"  # RMB 
-    ];
-
-
-
-
-   # LOOK AND FEEL
-
-   # Refer to https://wiki.hyprland.org/Configuring/Variables/
-
-    general = {
-      gaps_in = 1;
-      gaps_out = 1;
-      border_size = 1;
-      "col.active_border" = "rgb(198,160,246) rgb(139,213,202)";
-      "col.inactive_border" = "rgba(595959aa)";
-
-    # Set to true enable resizing windows by clicking and dragging on borders and gaps
-      resize_on_border = false;
-
-    # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-      allow_tearing = false;
-      layout = "dwindle";
-    };
-
-
-
-
-    # https://wiki.hyprland.org/Configuring/Variables/#decoration
-    decoration  = {
-      rounding = 7;
-      rounding_power = 3;
-
-    # Change transparency of focused and unfocused windows
-      active_opacity = 0.95;
-      inactive_opacity = 0.95;
-    
-      shadow = {
-        enabled = true;
-        range = 4;
-        render_power = 3;
-        color = "rgba(1a1a1aee)";
-      };
-
-    # https://wiki.hyprland.org/Configuring/Variables/#blur
-      blur = {
-        enabled = true;
-        size = 10;
-        passes = 1;
-        vibrancy = 0.1696;
-	ignore_opacity = true;
-      };
-    };
-
-    cursor = {
-    inactive_timeout = 1.5;
-    no_hardware_cursors = 1;   # Fixes anoying cursor flickering
-    default_monitor = "HDMI-A-1";
-    };
-
-
-
-
-
-
-    # ANIMATIONS
-
-
-    # https://wiki.hyprland.org/Configuring/Variables/#animations
-    animations = {
-      enabled = true;
-
-    # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-
-      bezier = [
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeInOutCubic,0.65,0.05,0.36,1"
-          "linear,0,0,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "quick,0.15,0,0.1,1"
-      ];
-
-      animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
-      ];
-    };
-
-
-
-
-
-    # LAYOUTS
-
-    dwindle = {
-        pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-        preserve_split = true; # You probably want this
-      };
-
-
-    master = {
-        new_status = "master";
-      };
-
-
-
-
-
-
-    # INPUTS
-
-    # https://wiki.hyprland.org/Configuring/Variables/#input
-      input = {
-        kb_layout = "de";
-        #resolve_binds_by_sym = true;   # makes the Keybinds -> kb_layout
-        # kb_variant = ;
-        # kb_model = ;
-        # kb_options = ;
-        # kb_rules = ;
-
-        follow_mouse = 1;
-
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-
-        touchpad = {
-        natural_scroll = true;
-        };
-
-
-        tablet = {
-        output = "current"; # the monitor to bind tablets. Empty = all
-        left_handed = true;
-        };
-
-
-      };
-
-# https://wiki.hyprland.org/Configuring/Variables/#gestures
-      gestures = {
-        workspace_swipe = false;
-      };
-
-
-
-
-    # MONITORS
-
-    monitor = [
-    # "Name or Description    , res      , abs-pos     , scaling "
-
-      "desc:ViewSonic Corporation VX3211-2K V3G191100694  , 2560x1440 , 0x0      , 1.6      "
-    
-      "desc:Najing CEC Panda FPD Technology CO. ltd 0x0040, 1920x1080 , 1600x900 , 2        "
-      
-      "desc:FMX Xiaomi L1 0x00000001                      , 1920x1080 , -320x-180  , 1        "
-
-      "                                                   , preferred , -320x-180   , 1        "
-    ];
-    
-    # PERMISIONS : Research how do they work
-
-    #ecosystem = {
-    #  enforce_permissions = true;
-    #};
-
-    #permission = [
-    #"/usr/(bin|local/bin)/grim, screencopy, allow"
-    #"/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, allow"
-    #];
-
-    # permission =
-    # permission =
-    # permission = /usr/(bin|local/bin)/hyprpm, plugin, allow
-
-
-    #  ENVIROMENT VARIABLES
-
-    env = [
-        "XCURSOR_SIZE,24"
-        "HYPRCURSOR_SIZE,24"
-	"HYPRSHOT_DIR,~/Pictures/Screenshots"
-    ];
-
-
-    # AUTOSTART
-
-    exec-once = [
-	"hyprpanel"
-	"hypridle"
-	"ags"
-        "cliphist"
-	"clipse -listen"
-        "systemctl --user start hyprpolkitagent"
-	"dbus-update-activation-environment --systemd --all"
-	"systemctl --user enable --now hyprpaper.service"
-        "wl-paste --type text --watch cliphist store" # Stores only text data
-        "wl-paste --type image --watch cliphist store" # Stores only image data
-	"hyprlock"
-      ];
-
-
-
-
-
-
-    # WINDOW RULES
-
-    # Example windowrule
-    # windowrule = float,class:^(kitty)$,title:^(kitty)$
-
-    # Ignore maximize requests from apps. You'll probably like this.
-      windowrule = ["suppressevent maximize, class:.*"
-      "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # Fix some dragging issues with XWayland
-      
-           ];
-
-      windowrulev2 = [
-      "float,class:(clipse)" # ensure you have a floating window class set if you want this behavior
-      "size 622 652,class:(clipse)" # set the size of the window
-      ];
-
-
-
-  };  # Here end the settings
   };  # for the toggle
 }

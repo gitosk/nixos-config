@@ -1,8 +1,8 @@
-{config, ...}:  # make default imports
+{config, lib, pkgs, ...}:  # make default imports
 
 {
   imports = [
-    ./hypr/hyprland.nix
+
   ];
 
 }

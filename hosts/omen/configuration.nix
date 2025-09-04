@@ -1,15 +1,16 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
     [ # Include the nixosModules and toggle them in the next section
       ./hardware-configuration.nix
       ../../nixosModules/default.nix
+      ../../nixosModules/hypr/hyprland.nix
     ];
 
-  hyprland.enable = true;
+  hyprland.enable = true; # enables ../../nixosModules/hypr/hypr.nix
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -134,7 +135,6 @@
      neovim			# editor 
      wget			# forgot :P
      git			# git
-     firefox			# Browser
      unzip			# Unzip
   ];
   

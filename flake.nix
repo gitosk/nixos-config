@@ -19,20 +19,12 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
 
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./host/omen/configuration.nix
-        ./nixosModules/default.nix
-      ];
-    };
-
 
     nixosConfigurations = {              # System configurations
       omen = lib.nixosSystem {           # "omen is the Hostname/pc-name"
         inherit system;
 	modules = [                          # List of modules.nix files
-	  ./host/omen/configuration.nix
+	  ./hosts/omen/configuration.nix
 	  ./nixosModules/default.nix
 	];
       };
@@ -43,7 +35,7 @@
       osk = home-manager.lib.homeManagerConfiguration { # "osk is the Username"
 	inherit pkgs;
 	modules = [                          # List of modules.nix files
-	./host/omen/home.nix
+	./hosts/omen/home.nix
 	./homeManagerModules/default.nix
 	];
       };

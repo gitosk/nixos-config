@@ -1,11 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
   
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
     ../../homeManagerModules/default.nix
+    ../../homeManagerModules/hypr/hyprland.nix
   ];
+
+  hyprModule.enable = true;  # Enables ../../homeManagerModules/hypr/hyprland.nix
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

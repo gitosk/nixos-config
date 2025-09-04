@@ -1,4 +1,4 @@
-{config}:
+{config, lib, ...}:
 {
   programs.git = {
     enable = true;
