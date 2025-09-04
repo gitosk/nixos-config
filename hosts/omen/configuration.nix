@@ -1,12 +1,16 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, lib, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # Include the nixosModules and toggle them in the next section
       ./hardware-configuration.nix
+      ../../nixosModules/default.nix
+      ../../nixosModules/hypr/hyprland.nix
     ];
+
+  hyprland.enable = true; # enables ../../nixosModules/hypr/hypr.nix
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -14,19 +18,7 @@
 
   # Enable Hyprland
 
-  programs.hyprland.enable = true; # enable Hyprland
-  services.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "osk";
-    defaultSession = "hyprland";
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-      settings = {
-	General.DisplayServer = "wayland";
-      };
-    };
-  };
+
 
 
   # Optional, hint Electron apps to use Wayland:
@@ -36,7 +28,7 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "omen"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -69,7 +61,7 @@
   # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
+    services.displayManager.sddm.enable = true;
     services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -143,22 +135,13 @@
      neovim			# editor 
      wget			# forgot :P
      git			# git
-     kitty			# terminal required for hyprland
-     firefox			# Browser
      unzip			# Unzip
-     matugen			# Colors
-     brightnessctl		# Brightness control
-     #linuxKernel.packages.linux_zen.ddcci-driver # Kernel module driver external screen
-     wl-clipboard
   ];
   
 
 
 
-  fonts.packages = with pkgs; [
-  noto-fonts
-  nerd-fonts.symbols-only
-  ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
