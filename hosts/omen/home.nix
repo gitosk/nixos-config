@@ -1,14 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
   
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
-    ../../system/WM/hyprland.nix
-    ../../system/apps/sh.nix
-  
-    #../../system/apps/
+    ../../homeManagerModules/default.nix
+    ../../homeManagerModules/hypr/hyprland.nix
   ];
+
+  hyprModule.enable = true;  # Enables ../../homeManagerModules/hypr/hyprland.nix
+
+
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -16,28 +20,6 @@
   home.username = "osk";
   home.homeDirectory = "/home/osk";
 
-  # Hyprland on the Home Manager
-
-  wayland.windowManager.hyprland = {
-    enable = true;
-    # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
-    package = null;
-    portalPackage = null;
-  };
-
-
-
-  # Git config
-
-  programs.git = {
-    enable = true;
-    userName = "gitosk";
-    userEmail = "oscarseiffert@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
-      safe.directory = "~/.dotfiles";
-    };
-  };
 
 
   # This value determines the Home Manager release that your configuration is
@@ -121,6 +103,5 @@
   # optionName = lib.mkDefault value;
   # Weaker
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+
 }

@@ -1,62 +1,26 @@
-{pkgs, config, lib, ...}:
+ {pkgs, config, lib, ...   } :
 
 {
-
-  home.packages = with pkgs; [
-  ags                          # dunst "replacement" needed for hyprpanel
-  pipewire            	       # App Comunication
-  hyprpolkitagent     	       # Notifications
-  qadwaitadecorations          # qt 5 and 6
-  hyprpaper                    # Wallpaper
-  hypridle                     # Testing not working yet
-  wireplumber                  # For App-Comunication
-  wofi                         # Menu
-  hyprpicker                   # Pick color
-  cliphist                     # Clipboard manager
-  clipse		       # GUI for clipboard
-  kdePackages.dolphin          # File explorer
-  iwgtk                        # Wifi settings
-  blueberry                    # Bluetooth settings
-  kitty                        # Terminal emulator
-  hyprshot                     # For Screenshots
-  ];
-
-  
-
-
-  
-  programs.hyprlock.enable = true;
-  programs.kitty.enable = true; 
-  programs.hyprpanel.enable = true;
-
-
-
-
-
-  services.hyprpaper = {   # Wallpaper Config
-    enable = true;
-    settings = {
-      preload = [
-        "~/Pictures/Fondos/Fondo DST_2.png" 
-        #  "~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-
-      wallpaper = [
-        ",~/Pictures/Fondos/Fondo DST_2.png"
-	#  ",~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-    };
+ options = { # Define toggle option for this module
+    hyprModule.enable =
+      lib.mkEnableOption "enables hyprland" ; # enables hyprland
   };
-  
 
 
+  config = lib.mkIf config.hyprModule.enable {
 
-  wayland.windowManager.hyprland.settings = {   # General Settings
+    programs.kitty.enable = true;  
+    programs.hyprpanel.enable = true;
+    programs.hyprlock.enable = true;
+    
 
-
-
-
-    # Keybinds
+    wayland.windowManager.hyprland = {
+      enable = true;
+      # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+      package = null;
+      portalPackage = null;
+      settings = {
+        # Keybinds
 
 
     "$mod" = "SUPER";
@@ -82,7 +46,7 @@
         "$mod, down, movefocus, d"
         "    , Print, exec, hyprshot -m window --clipboard-only"  # capture active window
 	"$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" # capture region
-        "$mod, V, exec,  $terminal --class clipse -e 'clipse'" 
+        "$mod, V, exec,  $terminal --class clipse -e 'clipse'"
 	"$mod, M, togglespecialworkspace, magic"
         "$mod SHIFT, M, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e-1"
@@ -112,7 +76,7 @@
         ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
         ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
-    
+
     # These work also when inputinhibitors "Lockscren" aree active
 
     bindl = [ # Requires playerctl
@@ -128,7 +92,7 @@
 
     bindm = [
       "$mod, mouse:272, movewindow"    # LMB
-      "$mod, mouse:273, resizewindow"  # RMB 
+      "$mod, mouse:273, resizewindow"  # RMB
     ];
 
 
@@ -164,7 +128,7 @@
     # Change transparency of focused and unfocused windows
       active_opacity = 0.95;
       inactive_opacity = 0.95;
-    
+
       shadow = {
         enabled = true;
         range = 4;
@@ -293,14 +257,14 @@
     # "Name or Description    , res      , abs-pos     , scaling "
 
       "desc:ViewSonic Corporation VX3211-2K V3G191100694  , 2560x1440 , 0x0      , 1.6      "
-    
+
       "desc:Najing CEC Panda FPD Technology CO. ltd 0x0040, 1920x1080 , 1600x900 , 2        "
-      
+
       "desc:FMX Xiaomi L1 0x00000001                      , 1920x1080 , -320x-180  , 1        "
 
       "                                                   , preferred , -320x-180   , 1        "
     ];
-    
+
     # PERMISIONS : Research how do they work
 
     #ecosystem = {
@@ -355,7 +319,7 @@
     # Ignore maximize requests from apps. You'll probably like this.
       windowrule = ["suppressevent maximize, class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # Fix some dragging issues with XWayland
-      
+
            ];
 
       windowrulev2 = [
@@ -366,4 +330,13 @@
 
 
   };  # Here end the settings
+
+
+
+
+
+
+      };
+    };
 }
+

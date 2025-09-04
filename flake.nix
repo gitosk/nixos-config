@@ -2,7 +2,7 @@
 
 
 
-  description = "My first flake - Private Profile";
+  description = "My first flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Point to reepositories
@@ -12,22 +12,32 @@
     # matugen.url = "github:Iniox/Matugen"; # For colors based on Wallpaper
   }; 
 
-  outputs = inputs@{nixpkgs, home-manager, ...}:  # This 3 expressions to pass lib into nixpkgs
+  outputs = {nixpkgs, home-manager, ...}@inputs:  # This 3 expressions to pass lib into nixpkgs
     let                                  
       lib = nixpkgs.lib;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-    nixosConfigurations = {      # System configurations
-      nixos = lib.nixosSystem {  # "nixos is the Hostname"
+
+
+    nixosConfigurations = {              # System configurations
+      omen = lib.nixosSystem {           # "omen is the Hostname/pc-name"
         inherit system;
-	modules = [ ./system/configuration.nix ];            # List of modules.nix files
+	modules = [                          # List of modules.nix files
+	  ./hosts/omen/configuration.nix
+	  ./nixosModules/default.nix
+	];
       };
     };
-    homeConfigurations = {       # user configurations
-      osk = home-manager.lib.homeManagerConfiguration { # "osk is the Hostname"
+
+
+    homeConfigurations = {               # user configurations
+      osk = home-manager.lib.homeManagerConfiguration { # "osk is the Username"
 	inherit pkgs;
-	modules = [ ./profiles/private/home.nix ];            # List of modules.nix files
+	modules = [                          # List of modules.nix files
+	./hosts/omen/home.nix
+	./homeManagerModules/default.nix
+	];
       };
     }; # What to do with them, the actual system
   };
