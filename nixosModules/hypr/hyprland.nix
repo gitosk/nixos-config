@@ -32,6 +32,7 @@
    matugen
    brightnessctl
    wl-clipboard
+   kitty
    ];
 
 
