@@ -12,7 +12,55 @@
     programs.kitty.enable = true;  
     programs.hyprpanel.enable = true;
     programs.hyprlock.enable = true;
+   
+
+  # Programs
+
+    home.packages = with pkgs; [
+      rofi
+      hyprshot
+      clipse
+
+
+
+      ags                          # dunst "replacement" needed for hyprpanel
+      pipewire            	   # App Comunication
+      hyprpolkitagent     	   # Notifications
+      qadwaitadecorations          # qt 5 and 6
+      hyprpaper                    # Wallpaper
+      hypridle                     # Testing not working yet
+      wireplumber                  # For App-Comunication
+      wofi                         # Menu
+      hyprpicker                   # Pick color
+      cliphist                     # Clipboard manager
+      clipse		           # GUI for clipboard
+      kdePackages.dolphin          # File explorer
+      iwgtk                        # Wifi settings
+      blueberry                    # Bluetooth settings
+      hyprshot                     # For Screenshots 
+    ];
+
     
+    services.hyprpaper = {   # Wallpaper Config
+      enable = true;
+      settings = {
+      preload = [
+        "~/Pictures/Fondos/Fondo DST_2.png" 
+        #  "~/Pictures/Fondos/Fondo DST_1.png"
+      ];
+
+      wallpaper = [
+        ",~/Pictures/Fondos/Fondo DST_2.png"
+	#  ",~/Pictures/Fondos/Fondo DST_1.png"
+      ];
+    };
+  };
+
+
+
+
+
+
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -20,13 +68,26 @@
       package = null;
       portalPackage = null;
       settings = {
-        # Keybinds
+     
+
+
+# VERY IMPORTANT: From here only parameters that are passed to hyprland. If not, then it will stack-overflow
+
+
+
+
+
+
+
+
+# Keybinds
 
 
     "$mod" = "SUPER";
     "$terminal" = "kitty";
     "$browser" = "firefox";
     "$files" = "dolphin";
+    "$menu" = "rofi -show drun";
 
 
     bind = [
@@ -36,7 +97,7 @@
         "$mod, K, killactive,"
         "$mod, L , exit,"
         "$mod, W, togglefloating,"
-        "$mod, R, exec, wofi --show drun"
+        "$mod, R, exec, $menu"
         "$mod, A, pseudo,"
         "$mod, S, togglesplit,"
         "$mod, +, exec, cliphist list"
