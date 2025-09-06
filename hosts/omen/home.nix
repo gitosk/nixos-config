@@ -10,6 +10,14 @@
 
   hyprModule.enable = true;  # Enables ../../homeManagerModules/hypr/hyprland.nix
 
+  # Testing live updtades on Hyprland Config
+
+#  xdg.configFile."hyprland.conf" = {
+#    source = config.lib.file.mkOutOfStoreSymlink "/home/osk/.dotfiles/homeManagerModules/hypr/hyprland.nix";
+#    recursive = true;
+#  };
+
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -37,6 +45,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    btop
     discord
     
 
@@ -91,9 +100,6 @@
 
   
 
-  # For sourcing from configuration files: writes text in path2 as symlink in path1
-
-  # home.file."path1".source = "path2"
 
   # For setting priorities in conflicting files: lib must be in hte imput of the overall function
 
