@@ -8,8 +8,7 @@
 
 
   config = lib.mkIf config.hyprModule.enable {
-
-    programs.kitty.enable = true;  
+  
     programs.hyprpanel.enable = true;
     programs.hyprlock.enable = true;
    
@@ -17,12 +16,9 @@
   # Programs
 
     home.packages = with pkgs; [
-      rofi
-      hyprshot
-      clipse
-
-
-
+      rofi		           # menu
+      hyprshot                     # screenshots
+      clipse			   # clipboard manager
       ags                          # dunst "replacement" needed for hyprpanel
       pipewire            	   # App Comunication
       hyprpolkitagent     	   # Notifications
@@ -30,7 +26,6 @@
       hyprpaper                    # Wallpaper
       hypridle                     # Testing not working yet
       wireplumber                  # For App-Comunication
-      wofi                         # Menu
       hyprpicker                   # Pick color
       cliphist                     # Clipboard manager
       clipse		           # GUI for clipboard
@@ -164,8 +159,8 @@
    # Refer to https://wiki.hyprland.org/Configuring/Variables/
 
     general = {
-      gaps_in = 1;
-      gaps_out = 1;
+      gaps_in = 2;
+      gaps_out = 5;
       border_size = 1;
       "col.active_border" = "rgb(198,160,246) rgb(139,213,202)";
       "col.inactive_border" = "rgba(595959aa)";
@@ -187,11 +182,11 @@
       rounding_power = 3;
 
     # Change transparency of focused and unfocused windows
-      active_opacity = 0.95;
+      active_opacity = 1;
       inactive_opacity = 0.95;
 
       shadow = {
-        enabled = true;
+        enabled = false;
         range = 4;
         render_power = 3;
         color = "rgba(1a1a1aee)";
@@ -199,7 +194,7 @@
 
     # https://wiki.hyprland.org/Configuring/Variables/#blur
       blur = {
-        enabled = true;
+        enabled = false;
         size = 10;
         passes = 1;
         vibrancy = 0.1696;
@@ -281,6 +276,8 @@
     # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
         kb_layout = "de";
+	repeat_rate = 35;
+	repeat_delay = 200;
         #resolve_binds_by_sym = true;   # makes the Keybinds -> kb_layout
         # kb_variant = ;
         # kb_model = ;
@@ -356,7 +353,6 @@
     exec-once = [
 	"hyprpanel"
 	"hypridle"
-	"ags"
         "cliphist"
 	"clipse -listen"
         "systemctl --user start hyprpolkitagent"
