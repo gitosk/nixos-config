@@ -70,6 +70,9 @@
       map ctrl+shift+up      increase_font_size
       map ctrl+shift+down    decrease_font_size
       map ctrl+shift+backspace restore_font_size
+
+      # Theming
+      include colors.conf
     '';
   };
 }

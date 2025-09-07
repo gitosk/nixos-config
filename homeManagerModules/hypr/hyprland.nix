@@ -23,7 +23,7 @@
       pipewire            	   # App Comunication
       hyprpolkitagent     	   # Notifications
       qadwaitadecorations          # qt 5 and 6
-      hyprpaper                    # Wallpaper
+      swww                    # Wallpaper
       hypridle                     # Testing not working yet
       wireplumber                  # For App-Comunication
       hyprpicker                   # Pick color
