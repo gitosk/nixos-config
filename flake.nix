@@ -8,8 +8,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Point to reepositories
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
-
-    # matugen.url = "github:Iniox/Matugen"; # For colors based on Wallpaper
   }; 
 
   outputs = {nixpkgs, home-manager, ...}@inputs:  # This 3 expressions to pass lib into nixpkgs

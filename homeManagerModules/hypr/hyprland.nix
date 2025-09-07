@@ -36,21 +36,6 @@
     ];
 
     
-    services.hyprpaper = {   # Wallpaper Config
-      enable = true;
-      settings = {
-      preload = [
-        "~/Pictures/Fondos/Fondo DST_2.png" 
-        #  "~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-
-      wallpaper = [
-        ",~/Pictures/Fondos/Fondo DST_2.png"
-	#  ",~/Pictures/Fondos/Fondo DST_1.png"
-      ];
-    };
-  };
-
 
 
 
