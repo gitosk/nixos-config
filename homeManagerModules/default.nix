@@ -1,8 +1,9 @@
 {config, ...}:
 {
   imports = [
-  ./apps/kitty.nix
-  ./apps/sh.nix
-  ./apps/git-configs.nix
+  ./apps/kitty/kitty.nix
+  ./apps/sh/sh.nix
+  ./apps/git/git-configs.nix
+  ./apps/matugen/matugen.nix
   ];
 }
