@@ -121,7 +121,7 @@
         "$mod, L , exec, hyprlock"
         "$mod SHIFT, L , exit,"
         "$mod, W, togglefloating,"
-        "$mod, R, exec, $menu"
+        "$mod, SPACE, exec, $menu"
         "$mod, A, pseudo,"
         "$mod, S, togglesplit,"
         "$mod, +, exec, cliphist list"
