@@ -9,13 +9,35 @@
 
   config = lib.mkIf config.hyprModule.enable {
   
-    programs.hyprpanel.enable = true;
-    programs.hyprlock.enable = true;
+   # programs.hyprpanel.enable = true;
+   
+    
+    services.hypridle.enable = true;
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        background = {
+          color = "rgb(10 , 10 , 10)";
+          blur_passes = 2;
+        };
+        input-field = {
+  
+          size = "20%, 5%";
+          outline_thickness = 3;
+          inner_color = "rgb(139,213,202)"; # no fill              
+          position = "0, -20";
+          halign = "center";
+          valign = "center";         
+        };      
+      };
+    };
    
 
   # Programs
 
     home.packages = with pkgs; [
+      hyprpanel
       rofi		           # menu
       hyprshot                     # screenshots
       clipse			   # clipboard manager
@@ -96,7 +118,8 @@
         "$mod, T, exec, $terminal"
         "$mod, D, exec, kitty yazi"
         "$mod, K, killactive,"
-        "$mod, L , exit,"
+        "$mod, L , exec, hyprlock"
+        "$mod SHIFT, L , exit,"
         "$mod, W, togglefloating,"
         "$mod, R, exec, $menu"
         "$mod, A, pseudo,"
@@ -387,6 +410,7 @@
       windowrulev2 = [
       "float,class:(clipse)" # ensure you have a floating window class set if you want this behavior
       "size 622 652,class:(clipse)" # set the size of the window
+      "idleinhibit fullscreen, fullscreen:1" # shoudl prevent idleing when fullscreen windowns are active
       ];
 
 
