@@ -33,6 +33,7 @@
    brightnessctl
    wl-clipboard
    kitty
+   kitty-themes
    ];
 
 
@@ -40,6 +41,7 @@
     fonts.packages = with pkgs; [
   noto-fonts
   nerd-fonts.symbols-only
+  nerd-fonts.jetbrains-mono
   ];
 
   };  # for the toggle
