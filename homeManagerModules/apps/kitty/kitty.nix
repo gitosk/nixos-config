@@ -2,8 +2,14 @@
   programs.kitty = {
     enable = true;
     package = pkgs.kitty;
+    font = {
+      name = "JetBrainsMono Nerd Font";
+      size = 14;          
+    };
+    shellIntegration.enableFishIntegration = true;
+      themeFile = "Dracula";    
     settings = {
-      font_size = 12;
+    
       wheel_scroll_min_lines = 1;
       window_padding_width = 4;
       confirm_os_window_close = 0;
@@ -71,8 +77,7 @@
       map ctrl+shift+down    decrease_font_size
       map ctrl+shift+backspace restore_font_size
 
-      # Theming
-      include colors.conf
+      
     '';
   };
 }

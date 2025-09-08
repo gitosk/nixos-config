@@ -23,7 +23,6 @@
       pipewire            	   # App Comunication
       hyprpolkitagent     	   # Notifications
       qadwaitadecorations          # qt 5 and 6
-      swww                    # Wallpaper
       hypridle                     # Testing not working yet
       wireplumber                  # For App-Comunication
       hyprpicker                   # Pick color
@@ -32,12 +31,34 @@
       kdePackages.dolphin          # File explorer
       iwgtk                        # Wifi settings
       blueberry                    # Bluetooth settings
-      hyprshot                     # For Screenshots 
+      hyprshot                     # For Screenshots
+      yazi                         # File manager
     ];
 
-    
+
+# Default apps. For type run nix-shell -p file -> file --mime-type -b <File.Name>.
+
+# ls /run/current-system/sw/share/applications # for global packages
+# ls /etc/profiles/per-user/$(id -n -u)/share/applications # for user packages
+# ls ~/.nix-profile/share/applications # for home-manager packages
+
+# https://wiki.nixos.org/wiki/Default_applications
 
 
+
+      xdg.mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "text/html" = "firefox.desktop";
+          "x-scheme-handler/http" = "firefox.desktop";
+          "x-scheme-handler/https" = "firefox.desktop";
+          "x-scheme-handler/about" = "firefox.desktop";
+          "x-scheme-handler/unknown" = "firefox.desktop";
+          "application/pdf" = "org.kde.okular.desktop";
+          "text/plain" = "org.kde.kate.desktop";
+          "image/png"  = "org.kde.gwenview.desktop";
+        };
+      };
 
 
 
@@ -66,14 +87,14 @@
     "$mod" = "SUPER";
     "$terminal" = "kitty";
     "$browser" = "firefox";
-    "$files" = "dolphin";
+    "$files" = "yazi";
     "$menu" = "rofi -show drun";
 
 
     bind = [
         "$mod, F, exec, $browser"
         "$mod, T, exec, $terminal"
-        "$mod, D, exec, $files"
+        "$mod, D, exec, kitty yazi"
         "$mod, K, killactive,"
         "$mod, L , exit,"
         "$mod, W, togglefloating,"
@@ -342,7 +363,6 @@
 	"clipse -listen"
         "systemctl --user start hyprpolkitagent"
 	"dbus-update-activation-environment --systemd --all"
-	"systemctl --user enable --now hyprpaper.service"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
 	"hyprlock"
