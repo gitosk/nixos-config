@@ -2,7 +2,7 @@
 
 {
   imports = [
-
+  ./nvf/nvf.nix
   ];
 
 }
