@@ -43,6 +43,9 @@
   nerd-fonts.symbols-only
   nerd-fonts.jetbrains-mono
   ];
+  
+      
+                                                                                      
 
   };  # for the toggle
 }

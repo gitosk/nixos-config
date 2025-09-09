@@ -8,6 +8,7 @@
       ./hardware-configuration.nix
       ../../nixosModules/default.nix
       ../../nixosModules/hypr/hyprland.nix
+      ./nvidia/nvidia.nix
     ];
 
   hyprland.enable = true; # enables ../../nixosModules/hypr/hypr.nix
@@ -22,6 +23,7 @@
 
   # Optional, hint Electron apps to use Wayland:
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+        
 
 
   # Use latest kernel.
