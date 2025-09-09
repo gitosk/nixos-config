@@ -1,5 +1,16 @@
-{
-  programs.vim.defaultEditor = true;
+{pkgs, config, ...}:{
+  
+  environment.systemPackages = with pkgs; [
+  vimPlugins.vimtex
+  ];
+
+
+  programs.vim = {
+    enable = true;
+    defaultEditor = true;
+#   plugins = pkgs.vimPlugins.vimtex;            
+  };
+    
 
   programs.nvf = {
     enable = true;
@@ -22,7 +33,8 @@
           enableTreesitter = true;
 
           nix.enable = true;
-          python.enable = true;      
+          python.enable = true;
+          
         };
 
       };
