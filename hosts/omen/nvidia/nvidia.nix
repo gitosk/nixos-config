@@ -1,9 +1,13 @@
-{config, lib, ...}:
+{config, lib, pkgs, ...}:
 
 {
-  # Enable OpenGL
+  # Enable OpenGL and Vulkan
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+    rocmPackages.clr
+    ];
   };
 
   # Load nvidia driver for Xorg and Wayland
@@ -17,6 +21,7 @@
   environment.variables = rec {
         LIBVA_DRIVER_NAME = "nvidia";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        __VK_LAYER_NV_optimus = "NVIDIA_only";
         };
 
   hardware.nvidia = {

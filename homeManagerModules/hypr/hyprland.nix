@@ -338,7 +338,7 @@
 
 
 
-    # MONITORS
+    # MONITORS AND SCALING
 
     monitor = [
     # "Name or Description    , res      , abs-pos     , scaling "
@@ -351,6 +351,15 @@
 
       "                                                   , preferred , -320x-180   , 1        "
     ];
+
+    xwayland = {
+      force_zero_scaling = true;
+    };
+
+
+
+
+
 
     # PERMISIONS : Research how do they work
 
