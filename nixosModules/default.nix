@@ -3,6 +3,8 @@
 {
   imports = [
   ./nvf/nvf.nix
+  ./gaming/gaming.nix              
   ];
-
+  
+  services.flatpak.enable = true;
 }

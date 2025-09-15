@@ -5,6 +5,6 @@
     ./apps/sh/sh.nix
     ./apps/git/git-configs.nix
     ./apps/kitty/kitty.nix
-    ./apps/office/office.nix   
+    ./apps/office/office.nix
   ];
 }
