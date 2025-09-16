@@ -55,6 +55,7 @@
       blueberry                    # Bluetooth settings
       hyprshot                     # For Screenshots
       yazi                         # File manager
+      waydroid-helper              # GUI waydroid Management
     ];
 
 
@@ -331,9 +332,9 @@
       };
 
 # https://wiki.hyprland.org/Configuring/Variables/#gestures
-      gestures = {
-        workspace_swipe = false;
-      };
+#      gestures = {
+#        workspace_swipe = false;
+#      };
 
 
 
@@ -420,6 +421,15 @@
       "float,class:(clipse)" # ensure you have a floating window class set if you want this behavior
       "size 622 652,class:(clipse)" # set the size of the window
       "idleinhibit fullscreen, fullscreen:1" # shoudl prevent idleing when fullscreen windowns are active
+
+      "pseudo,class:^(Waydroid|waydroid)"
+
+      "size 400 862,class:^(Waydroid|waydroid)"
+
+      "maxsize 400 862,class:^(Waydroid|waydroid)"
+
+      "keepaspectratio,class:^(Waydroid|waydroid)"
+      
       ];
 
 
