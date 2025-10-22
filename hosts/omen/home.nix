@@ -46,7 +46,6 @@
 
   home.packages = with pkgs; [
     btop
-    discord
     tor-browser 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

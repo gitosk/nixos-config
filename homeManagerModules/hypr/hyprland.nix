@@ -12,7 +12,7 @@
    # programs.hyprpanel.enable = true;
    
     
-    services.hypridle.enable = true;
+#   services.hypridle.enable = true;
 
     programs.hyprlock = {
       enable = true;
@@ -424,12 +424,15 @@
 
       "pseudo,class:^(Waydroid|waydroid)"
 
-      "size 400 862,class:^(Waydroid|waydroid)"
+      "size 500 862,class:^(Waydroid|waydroid)"
 
-      "maxsize 400 862,class:^(Waydroid|waydroid)"
+      "maxsize 500 862,class:^(Waydroid|waydroid)"
 
       "keepaspectratio,class:^(Waydroid|waydroid)"
       
+#    "minsize 720 862,misc:size_limits_tiled,class:^(firefox)" # Trying to repair scaling and mouse problems when in a small window
+     
+     "noblur, class:firefox"
       ];
 
 

@@ -42,6 +42,7 @@
   noto-fonts
   nerd-fonts.symbols-only
   nerd-fonts.jetbrains-mono
+  liberation_ttf
   ];
   
       

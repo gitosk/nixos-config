@@ -5,20 +5,18 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-    rocmPackages.clr
-    ];
+#    extraPackages = with pkgs; [ ];
   };
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-  
+
    #boot.kernelParams = [ "button.lid_init_state=open" ];
   
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
   services.logind.settings.Login.HangleLidSwitchDocked = "ignore";
 
-  environment.variables = rec {
+  environment.sessionVariables = rec {
         LIBVA_DRIVER_NAME = "nvidia";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
         __VK_LAYER_NV_optimus = "NVIDIA_only";
