@@ -8,15 +8,22 @@
   environment.systemPackages = with pkgs; [
     mangohud
     protonup
-    heroic
-    vulkan-tools 
+    vulkan-tools
+    heroic            
+    (retroarch.withCores (cores: with cores;[
+     citra
+     desmume
+     dolphin
+     melonds
 
-    (lutris.override {
-      extraLibraries = pkgs:[];
-      extraPkgs = pkgs:[ 
-        adwaita-icon-theme
-      ];
-    })
+     ]))
+
+                #    (lutris.override {
+                #      extraLibraries = pkgs:[];
+                #      extraPkgs = pkgs:[ 
+                #        adwaita-icon-theme
+                #      ];
+                #    })
   ];  
   
   

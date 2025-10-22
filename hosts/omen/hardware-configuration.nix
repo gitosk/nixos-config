@@ -9,7 +9,8 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = ["nvidia"];
+  boot.blacklistedKernelModules = ["nouveau"];      
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
