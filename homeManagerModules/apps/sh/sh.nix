@@ -9,6 +9,7 @@ let                # Creating variables
     omen   = "cd ~/.dotfiles/hosts/omen";
     hy = "cd ~/.dotfiles/homeManagerModules/hypr/";
     sy = "cd ~/.dotfiles/nixosModules/hypr/";
+    hpc_rwth = "ssh -l ow304070 login23-4.hpc.itc.rwth-aachen.de";
     
   };
 in
