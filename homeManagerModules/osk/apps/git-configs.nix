@@ -1,10 +1,10 @@
 {config, lib, ...}:
 {
   programs.git = {
-    enable = true;
-    userName = "gitosk";
-    userEmail = "oscarseiffert@gmail.com";
-    extraConfig = {
+    settings = {
+      enable = true;
+      userName = "gitosk";
+      userEmail = "oscarseiffert@gmail.com";
       init.defaultBranch = "main";
       safe.directory = "~/.dotfiles";
     };

@@ -38,7 +38,7 @@
 	inherit pkgs;
 	modules = [                          # List of modules.nix files
 	./hosts/omen/home.nix
-	./homeManagerModules/default.nix
+	./homeManagerModules/osk/default.nix
 	];
       };
     }; # What to do with them, the actual system

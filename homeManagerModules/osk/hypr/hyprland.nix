@@ -55,7 +55,6 @@
       blueberry                    # Bluetooth settings
       hyprshot                     # For Screenshots
       yazi                         # File manager
-      waydroid-helper              # GUI waydroid Management
     ];
 
 
@@ -415,6 +414,7 @@
       windowrule = ["suppressevent maximize, class:.*"
       "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0" # Fix some dragging issues with XWayland
 
+
            ];
 
       windowrulev2 = [
@@ -433,6 +433,8 @@
 #    "minsize 720 862,misc:size_limits_tiled,class:^(firefox)" # Trying to repair scaling and mouse problems when in a small window
      
      "noblur, class:firefox"
+
+     "noblur, class:discord" 
       ];
 
 
