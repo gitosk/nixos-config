@@ -4,49 +4,10 @@
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
-    ../../homeManagerModules/default.nix
-    ../../homeManagerModules/hypr/hyprland.nix
+    ../../homeManagerModules/osk/default.nix
+    ../../homeManagerModules/osk/hypr/hyprland.nix
   ];
 
-  hyprModule.enable = true;  # Enables ../../homeManagerModules/hypr/hyprland.nix
-
-  # Testing live updtades on Hyprland Config
-
-#  xdg.configFile."hyprland.conf" = {
-#    source = config.lib.file.mkOutOfStoreSymlink "/home/osk/.dotfiles/homeManagerModules/hypr/hyprland.nix";
-#    recursive = true;
-#  };
-
-
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
-
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "osk";
-  home.homeDirectory = "/home/osk";
-
-
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "25.05"; # Please read the comment before changing.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-
-  nixpkgs.config.allowUnfree = true;
-
-  home.packages = with pkgs; [
-    btop
-    tor-browser 
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -60,7 +21,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

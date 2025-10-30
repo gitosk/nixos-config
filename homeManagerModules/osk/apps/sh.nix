@@ -10,7 +10,7 @@ let                # Creating variables
     hy = "cd ~/.dotfiles/homeManagerModules/hypr/";
     sy = "cd ~/.dotfiles/nixosModules/hypr/";
     hpc_rwth = "ssh -l ow304070 login23-4.hpc.itc.rwth-aachen.de";
-    
+    vpn_rwth = "openconnect vpn.rwth-aachen.de";
   };
 in
 
@@ -19,12 +19,7 @@ in
   programs.bash = { # enable home-manager to config bash
     enable = true;
     shellAliases = myAliases;
+ #  bashrcExtra =
   };
-
-  programs.zsh = { # enable home-manager to config zsh
-    enable = true;
-    shellAliases = myAliases;
-  };
-
 
 }
