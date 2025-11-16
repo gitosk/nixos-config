@@ -13,8 +13,8 @@
 
    #boot.kernelParams = [ "button.lid_init_state=open" ];
   
-  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
-  services.logind.settings.Login.HangleLidSwitchDocked = "ignore";
+        #  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+        #  services.logind.settings.Login.HangleLidSwitchDocked = "ignore";
 
   environment.sessionVariables = rec {
         LIBVA_DRIVER_NAME = "nvidia";
@@ -25,13 +25,11 @@
   hardware.nvidia = {
 
     # Modesetting is required.
-    modesetting.enable = true;
+    modesetting.enable = true; 
 
-    
+    # Power Management            
     powerManagement.enable = true;
-
     powerManagement.finegrained = false;
-
      
     # Only available from driver 515.43.04+
     open = true;

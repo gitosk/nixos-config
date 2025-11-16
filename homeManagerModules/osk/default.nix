@@ -24,7 +24,8 @@
     tor-browser     
     openconnect     # VPN
     waydroid-helper # GUI for Waydroid
-    gromacs         # Molecular dynamics
+    gnuplot         # Command line plotting
+    typst           # Generating PDF from markdown text
   ];
 
 }

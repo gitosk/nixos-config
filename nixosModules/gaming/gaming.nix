@@ -7,7 +7,7 @@
 
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup
+    protonup-ng
     vulkan-tools
     heroic            
     (retroarch.withCores (cores: with cores;[
