@@ -12,12 +12,14 @@
     ];
 
   hyprland.enable = true; # enables ../../nixosModules/hypr/hypr.nix
+  
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
+ 
 
 
 
@@ -38,7 +40,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-        
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
