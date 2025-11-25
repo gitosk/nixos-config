@@ -67,6 +67,8 @@
     services.displayManager.sddm.enable = true;
     services.desktopManager.plasma6.enable = true;
 
+    programs.kdeconnect.enable = true;
+
   # Configure keymap in X11
   # services.xserver.xkb = {
   #   layout = "de";
@@ -139,6 +141,7 @@
      wget			# forgot :P
      git			# git
      unzip			# Unzip
+     vlc
   ];
   
 
