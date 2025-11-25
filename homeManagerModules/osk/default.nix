@@ -26,6 +26,8 @@
     waydroid-helper # GUI for Waydroid
     gnuplot         # Command line plotting
     typst           # Generating PDF from markdown text
+    gimp
+    audacity
   ];
 
 }

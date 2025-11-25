@@ -66,7 +66,9 @@
 
 # https://wiki.nixos.org/wiki/Default_applications
 
+# For finding out wich filetype something has you need to execute: xdg-mime query filetype <filename>. 
 
+# 
 
       xdg.mimeApps = {
         enable = true;
@@ -79,6 +81,8 @@
           "application/pdf" = "org.kde.okular.desktop";
           "text/plain" = "org.kde.kate.desktop";
           "image/png"  = "org.kde.gwenview.desktop";
+          "audio/mpeg" = "vlc.desktop";
+          "video/mp4"  = "vlc.desktop";
         };
       };
 
@@ -390,14 +394,12 @@
 
     exec-once = [
 	"hyprpanel"
-	"hypridle"
         "cliphist"
 	"clipse -listen"
         "systemctl --user start hyprpolkitagent"
 	"dbus-update-activation-environment --systemd --all"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
-	"hyprlock"
       ];
 
 

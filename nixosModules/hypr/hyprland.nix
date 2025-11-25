@@ -16,8 +16,8 @@
 
 
   services.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "osk";
+#    autoLogin.enable = true;
+#    autoLogin.user = "osk";
     defaultSession = "hyprland";
       sddm = {
       enable = true; # enabled in configuration.nix
