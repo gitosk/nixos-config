@@ -27,7 +27,10 @@
     gnuplot         # Command line plotting
     typst           # Generating PDF from markdown text
     gimp
-    audacity
+    audacity        
+    mpv             # Video and Audio player for Terminal
+    inkscape        # Vectorgraphics
+    zotero          # citation software 
   ];
 
 }
