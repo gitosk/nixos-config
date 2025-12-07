@@ -30,7 +30,8 @@
     audacity        
     mpv             # Video and Audio player for Terminal
     inkscape        # Vectorgraphics
-    zotero          # citation software 
+    zotero          # citation software
+    xdg-desktop-portal-termfilechooser
   ];
 
 }

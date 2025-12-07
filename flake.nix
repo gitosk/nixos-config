@@ -16,7 +16,7 @@
   };
         
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05"; # Point to reepositories
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Point to reepositories
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
     nvf.url = "github:NotAShelf/nvf";
