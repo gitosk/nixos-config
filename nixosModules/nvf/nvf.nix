@@ -1,14 +1,12 @@
 {pkgs, config, ...}:{
   
   environment.systemPackages = with pkgs; [
-  vimPlugins.vimtex
   ];
 
 
   programs.vim = {
     enable = true;
     defaultEditor = true;
-#   plugins = pkgs.vimPlugins.vimtex;            
   };
     
 
@@ -31,10 +29,10 @@
 
         languages = {
           enableTreesitter = true;
-
+          
           nix.enable = true;
           python.enable = true;
-          
+          typst.enable = true;
         };
 
       };
