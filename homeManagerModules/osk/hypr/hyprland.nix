@@ -67,8 +67,7 @@
 # https://wiki.nixos.org/wiki/Default_applications
 
 # For finding out wich filetype something has you need to execute: xdg-mime query filetype <filename>. 
-
-# 
+ 
 
       xdg.mimeApps = {
         enable = true;
@@ -128,14 +127,14 @@
         "$mod, SPACE, exec, $menu"
         "$mod, A, pseudo,"
         "$mod, S, togglesplit,"
-        "$mod, +, exec, cliphist list"
+#       "$mod, +, exec, clipse -e 'clipse'"                        # think something else 
         "$mod, left, movefocus, l"
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-        "    , Print, exec, hyprshot -m window --clipboard-only"  # capture active window
+        "    , Print, exec, hyprshot -m window --clipboard-only"   # capture active window
 	"$mod SHIFT, S, exec, hyprshot -m region --clipboard-only" # capture region
-        "$mod, V, exec,  $terminal --class clipse -e 'clipse'"
+        "$mod, V, exec,  $terminal --class clipse -e 'clipse'"     #show clipboard history 
 	"$mod, M, togglespecialworkspace, magic"
         "$mod SHIFT, M, movetoworkspace, special:magic"
         "$mod, mouse_down, workspace, e-1"

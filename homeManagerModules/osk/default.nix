@@ -31,7 +31,8 @@
     mpv             # Video and Audio player for Terminal
     inkscape        # Vectorgraphics
     zotero          # citation software
-    xdg-desktop-portal-termfilechooser
+    xdg-desktop-portal-termfilechooser # Forgot :P 
+    kdePackages.kdenlive # Video Editing
   ];
 
 }
