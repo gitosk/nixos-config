@@ -15,6 +15,7 @@
   
 
 
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -38,7 +39,7 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
+  # Enable networking - disabling this fucks up wifi
     networking.networkmanager.enable = true;
 
   # Set your time zone.
@@ -66,7 +67,6 @@
   # Enable the KDE Plasma Desktop Environment.
     services.displayManager.sddm.enable = true;
     services.desktopManager.plasma6.enable = true;
-
     programs.kdeconnect.enable = true;
 
   # Configure keymap in X11
@@ -142,12 +142,10 @@
      git			# git
      unzip			# Unzip
      vlc
-  ];
+     scarlett2          # For audio card recording
+     alsa-scarlett-gui
+];
   
-
-
-
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

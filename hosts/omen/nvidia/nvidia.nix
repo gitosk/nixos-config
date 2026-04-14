@@ -16,11 +16,23 @@
         #  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
         #  services.logind.settings.Login.HangleLidSwitchDocked = "ignore";
 
+        #  -------------- CUDA CACHE ------------------
+
+  nix.settings = {  
+    substituters = [
+      "https://cache.nixos-cuda.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+    ];
+  };
   environment.sessionVariables = rec {
         LIBVA_DRIVER_NAME = "nvidia";
         __GLX_VENDOR_LIBRARY_NAME = "nvidia";
         __VK_LAYER_NV_optimus = "NVIDIA_only";
         };
+
+      # ------------- Computer specific config ----------
 
   hardware.nvidia = {
 
