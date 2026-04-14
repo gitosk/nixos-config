@@ -1,6 +1,6 @@
 {config, pkgs, lib, ...}:
 {
-  imports = [
+  imports = [  # For home-manager congifurations
     ./apps/kitty.nix
     ./apps/sh.nix
     ./apps/git-configs.nix

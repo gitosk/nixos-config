@@ -6,6 +6,6 @@
     pdfarranger
     onlyoffice-desktopeditors
     anki
-                
+    mattermost            
   ];
 }
