@@ -33,14 +33,15 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "omen"; # Define your hostname.
-# networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+#  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking - disabling this fucks up wifi
-    networking.networkmanager.enable = true;
+  # Enable networking - disabling this fucks up wifi. The nftables is a requisite for waydroid.
+  networking.networkmanager.enable = true;
+  networking.nftables.enable = true; 
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
