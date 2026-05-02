@@ -145,6 +145,7 @@
      vlc
      scarlett2          # For audio card recording
      alsa-scarlett-gui
+     distrobox
 ];
   
 

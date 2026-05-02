@@ -9,7 +9,17 @@
         # ---------------- Nice to have ---------------
  
   services.flatpak.enable = true;  # For flatpak aplications
-  virtualisation.waydroid.enable = true; # Android Apps, not working currently
+
+
+
+        # ---------------- Virtualisation -------------
+  virtualisation = {
+    waydroid.enable = true; # Android Apps, not working currently
+#    podman = {              # For dockers and distrobox
+#      enable = true;
+#      dockerCompat = true;
+#    };
+  };
 
 
 }
