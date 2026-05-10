@@ -4,8 +4,8 @@
 {
   # Modularity by importing .nix files : Will merge with home.packages = with pkgs; [];
   imports = [
-    ../../homeManagerModules/osk/default.nix
-    ../../homeManagerModules/osk/hypr/hyprland.nix
+    ./default.nix
+    ./hypr/hyprland.nix
   ];
 
 
