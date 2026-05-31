@@ -1,7 +1,4 @@
 {
-
-
-
   description = "flake for pc-system";
   
 
