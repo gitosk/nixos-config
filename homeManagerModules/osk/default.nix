@@ -35,6 +35,4 @@
     kdePackages.kdenlive # Video Editing
   ];
 
-
-
 }

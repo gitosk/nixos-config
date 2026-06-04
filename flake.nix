@@ -6,7 +6,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Point to reepositories
     home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
+#    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
     nvf.url = "github:NotAShelf/nvf";
     
     }; 
@@ -36,8 +36,8 @@
       osk = home-manager.lib.homeManagerConfiguration { # "osk is the Username"
 	inherit pkgs;
 	modules = [                          # List of modules.nix files
+	./hosts/omen/home.nix
 	./homeManagerModules/osk/default.nix
-	./homeManagerModules/osk/home.nix
 	];
       };
     }; # What to do with them, the actual system
