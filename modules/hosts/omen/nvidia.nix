@@ -1,0 +1,87 @@
+{ self, inputs, ... }: {
+
+  flake.nixosModules.omenNvidia = {config, lib, pkgs, ...}: {
+
+  # Enable unfree packages
+
+  nixpkgs.config.allowUnfree = true;
+
+  # Enable OpenGL and Vulkan
+
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+  # Load nvidia driver for Xorg and Wayland
+    services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+
+
+          #  -------------- CUDA CACHE ------------------
+
+    nix.settings = {  
+      substituters = [
+        "https://cache.nixos-cuda.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      ];
+    };
+
+    environment.sessionVariables = rec {
+          LIBVA_DRIVER_NAME = "nvidia";
+          __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+          __VK_LAYER_NV_optimus = "NVIDIA_only";
+          };
+
+        # ------------- Computer specific config ----------
+
+    hardware.nvidia = {
+
+      # Modesetting is required.
+      modesetting.enable = true; 
+
+      # Power Management            
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+       
+      # Only available from driver 515.43.04+
+      open = true;
+
+      # Enable the Nvidia settings menu,
+          # accessible via `nvidia-settings`.
+      nvidiaSettings = true;
+
+      # Optionally, you may need to select the appropriate driver version for your specific GPU.
+      # package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+
+      
+
+
+      # Enabling Optimus PRIME Sync mode as default
+
+      hardware.nvidia.prime = {
+      # Make sure to use the correct Bus ID values for your system!
+        sync.enable = true;
+        amdgpuBusId = "PCI:7:0:0"; 
+        nvidiaBusId = "PCI:1:0:0"; 
+          };
+          
+          
+    # Boot Option für unterwegs
+
+      specialisation = {  
+        on-the-go.configuration = {
+          system.nixos.tags = ["on-the-go"];            
+          hardware.nvidia.prime = {
+            offload = {
+              enable = true;
+              enableOffloadCmd = true;
+            };
+            sync.enable = lib.mkForce false;
+        };
+      };
+    };
+  };
+}
