@@ -45,10 +45,10 @@ hl.monitor({
 })
 
 hl.monitor({
-  output = "desc:Najing CEC Panda FPD Technology CO. ltd 0x0040",
+  output = "eDP-1",
   mode = "1920x1080",
   position = "1600x900",
-  scale = 2,
+  scale = 1.5,
 })
 
 
@@ -63,7 +63,7 @@ hl.monitor({
 hl.monitor({
   output = " ",
   mode = "preferred",
-  position = "-320x-180",
+  position = "auto-center-left",
   scale = 1
 })
 
@@ -179,6 +179,7 @@ hl.config({
     inactive_opacity = 0.95,
   },
   dwindle = {
+    smart_split = true,
     preserve_split = true,
   },
   cursor = {
