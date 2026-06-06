@@ -108,7 +108,7 @@
   "theme.bar.menus.monochrome": false,
   "wallpaper.pywal": false,
   "theme.bar.buttons.borderSize": "0.1em",
-  "theme.matugen": false,
+  "theme.matugen": true,
   "wallpaper.image": "/home/osk/Pictures/wallpapers/Fondo_DST_2.png",
   "theme.matugen_settings.mode": "dark",
   "theme.matugen_settings.scheme_type": "expressive",
@@ -124,7 +124,7 @@
   "menus.dashboard.shortcuts.left.shortcut2.icon": "󰅏",
   "menus.dashboard.shortcuts.left.shortcut2.tooltip": "Clipboard",
   "menus.dashboard.shortcuts.left.shortcut2.command": "kitty --class clipse -e 'clipse' ",
-  "theme.matugen_settings.variation": "standard_1",
+  "theme.matugen_settings.variation": "standard_3",
   "theme.matugen_settings.contrast": 0.5,
   "theme.bar.outer_spacing": "0.5em",
   "theme.bar.buttons.spacing": "0.3em",
@@ -148,5 +148,6 @@
   "theme.bar.menus.menu.power.scaling": 60,
   "theme.tooltip.scaling": 60,
   "theme.bar.menus.popover.scaling": 60,
-  "theme.osd.scaling": 60
+  "theme.osd.scaling": 60,
+  "theme.matugen_settings.source_color_index": "0"
 }
