@@ -1,47 +1,39 @@
 {
-  description = "flake for pc-system";
+  description = "Gitosk flake for personal use, scrapped together with dozens of hours of tutorials, blood, sweat and tears.";
   
-
-        
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # Point to reepositories
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
-#    home-manager.inputs.nixpkgs.follows = "nixpkgs"; # Syncronize versions
-    nvf.url = "github:NotAShelf/nvf";
     
-    }; 
+    # System management's urls
+    
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";   
+    home-manager.url = "github:nix-community/home-manager/release-26.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    
+    # Dendritic pattern's urls
 
-  outputs = {nixpkgs, home-manager, nvf, ...}@inputs:  # This 3 expressions to pass lib into nixpkgs
-    let                                  
-      lib = nixpkgs.lib;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
 
+    # Extra url's
 
-    nixosConfigurations = {              # System configurations
-      omen = lib.nixosSystem {           # "omen is the Hostname/pc-name"
-        inherit system;
-	modules = [                          # List of modules.nix files
-	  ./hosts/omen/configuration.nix
-	  ./nixosModules/default.nix
-          nvf.nixosModules.default
-          home-manager.nixosModules.home-manager
-	];
-      };
-    };
+    nvf.url = "github:NotAShelf/nvf";
 
-
-    homeConfigurations = {               # user configurations
-      osk = home-manager.lib.homeManagerConfiguration { # "osk is the Username"
-	inherit pkgs;
-	modules = [                          # List of modules.nix files
-	./hosts/omen/home.nix
-	./homeManagerModules/osk/default.nix
-	];
-      };
-    }; # What to do with them, the actual system
   };
+
+
+
+  outputs = inputs@{
+    flake-parts,
+    home-manager,
+    nixpkgs,
+    nvf,
+    ...
+  }:
+
+    flake-parts.lib.mkFlake {inherit inputs; }
+       # Auto import flake-parts
+       (inputs.import-tree ./modules);
 
 }
 

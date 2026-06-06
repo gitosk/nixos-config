@@ -1,0 +1,47 @@
+This is my personal system comfiguration using nixos flakes, flake-parts and home-manager (module).
+
+Nix is both a package manager and a programming language defining what to do with those packages. It is based on lambda functions e.g: { x, y }:{ 2*x + y } with no conditional logic in a traditional way. When executing it creates a derivation to be inmune to language changes. 
+
+This is a complete Operative System configuration with the intend of being a long term personal computing solution.
+
+Flake is a experimental feature that allows to create a package with setand locked imputs with reproducibility through the flake.lock file. This file store commit-hashes for the imputs to be pulled by the flake.nix.
+
+
+General struckture from the top of the flake :
+
+1. Inputs: Path to repositories.
+
+2. Outputs: Top level function to create the system.
+
+
+This flake also uses flake-parts and auto imports. Through it it gains acces to the the flake parts options. This are the most relevant here:
+
+- flake.nixosConfigurations: For creating new specific machine configurations.
+
+- flake.nixosModules: Configurations reusable in different machines.
+
+- perSystem.packages: Atribute set of packages built by nix build.
+
+- perSystem.devShells: Atribute set of packages to be used as shells. e.g:
+
+  {
+    default = pkgs.mkShell {
+      nativeBuildInputs = with pkgs; [ wget bat cargo ];
+    };
+  }
+
+- systems: All the system types to enumerate in the flake output subattributes. In other words, all valid values for system in e.g. packages.<system>.foo.
+
+
+To create a top-level accesible flake parts module it has to be put into the following:
+
+
+{ inputs, self, ... }: {
+
+# Here you can use any of the options listed above
+
+}
+
+The self parameter is for when you want the file to acces modules in the top-level.
+
+I hope you are doing well.

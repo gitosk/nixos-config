@@ -1,4 +1,11 @@
-{config, pkgs, ...}:
+{ self, inputs, ... }: {
+
+  imports = [
+    # Here are the top level flake modules inported
+    inputs.home-manager.flakeModules.home-manager
+  ];
+
+  flake.homeModules.sh = {config, pkgs, ...}:
 
 let                # Creating variables
   myAliases = {
@@ -28,5 +35,5 @@ in
  #	rm -f -- "$tmp"
  #   '';
   };
-
+};
 }

@@ -1,4 +1,12 @@
-{config, lib, ...}:
+{ self, inputs, ... }: {
+
+
+  imports = [
+    # Here are the top level flake modules inported
+    inputs.home-manager.flakeModules.home-manager
+  ];
+
+  flake.homeModules.git = {config, lib, ...}:
 {
   programs.git = {
     settings = {
@@ -9,4 +17,6 @@
       safe.directory = "~/.dotfiles";
     };
   };
+
+};
 }
