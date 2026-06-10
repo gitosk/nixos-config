@@ -180,7 +180,7 @@ hl.config({
   },
   dwindle = {
     smart_split = true,
-    preserve_split = true,
+    preserve_split = true, 
   },
   cursor = {
     inactive_timeout = 1.5,
@@ -252,7 +252,7 @@ hl.window_rule({
 hl.window_rule({
   name = "Ensure you have a floating window of a set size",
   match = {
-    class="clipse", -- not working 
+    class="clipse",
   },
   float = true,
   size = "622 652",
@@ -261,22 +261,23 @@ hl.window_rule({
 hl.window_rule({
   name = "set hardcoded Waydroid sizes",
   match = {
-    class = "^(Waydroid|waydroid)"
+    initial_class = "Waydroid"
   },
-  pseudo = true,
+  pseudo = true,  -- floats for some reason
+  float = false,
   size = "500 862",
   max_size = "500 862",
   keep_aspect_ratio = true,
 })
 
 hl.window_rule({
-  name = "firefox settings",
-  match = { class = "^(firefox)" },
+  name = "firefox settings", -- bc weird in small sizes
+  match = { initial_class = "^(firefox)" },
   min_size = "720 862",
-  no_blur = true,
+  opaque = true,
 })
 
-hl.window_rule({match={class="discord"}, no_blur = true})
+hl.window_rule({match={class="discord"}, opaque = true})
 
 
 
