@@ -15,7 +15,8 @@
         "image/png"  = "org.kde.gwenview.desktop";
         "audio/mpeg" = "vlc.desktop";
         "video/mp4"  = "vlc.desktop";
-
+        "video/mpg" = "vlc.desktop";
+        "video/mpeg" = "vlc.desktop";
       };
     };
   };
