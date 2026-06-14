@@ -42,6 +42,9 @@ To create a top-level accesible flake parts module it has to be put into the fol
 
 }
 
-The self parameter is for when you want the file to acces modules in the top-level.
+The self parameter is for when you want the file to access modules in the top-level.
+
+I will also leave templates for starting configurations of new host, users and modules. You will find them in the corresponding directories.
+
 
 I hope you are doing well.
