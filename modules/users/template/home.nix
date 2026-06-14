@@ -1,18 +1,18 @@
-#{ self, inputs, ... }: {
-#  
+{ self, inputs, ... }: {
+  
 
-#  flake.homeConfigurations.USER = inputs.home-manager.lib.homeManagerConfiguration {
-#    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-#      modules = [
-#        # Here you can import different configurations for the same user
-#        self.homeModules.USERDefault {
-#          home.username = "USER";
-#          home.homeDirectory = "/home/USER";
-#          home.stateVersion = "Your_version";
-#        }
+# flake.homeConfigurations.USER = inputs.home-manager.lib.homeManagerConfiguration {
+#   pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
+#     modules = [
+#       # Here you can import different configurations for the same user
+#       self.homeModules.USERDefault {
+#         home.username = "USER";
+#         home.homeDirectory = "/home/USER";
+#         home.stateVersion = "25.11";
+#       }
 
-#      ];
+#     ];
 
-#  };
+# };
 
-#}
+}
