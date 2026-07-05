@@ -264,10 +264,25 @@ hl.window_rule({
     initial_class = "Waydroid"
   },
   pseudo = true,  -- floats for some reason
-  float = false,
   size = "500 862",
-  max_size = "500 862",
-  keep_aspect_ratio = true,
+})
+
+hl.window_rule({
+  name = "set hardcoded Amazon-Music sizes",
+  match = {
+    initial_class = "waydroid.com.amazon.mp3"
+  },
+  pseudo = true,  -- floats for some reason
+  size = "500 862",
+})
+
+hl.window_rule({
+  name = "set hardcoded Authenticator sizes",
+  match = {
+    initial_class = "waydroid.com.google.android.apps.authenticator2"
+  },
+  pseudo = true,  -- floats for some reason
+  size = "500 862",
 })
 
 hl.window_rule({
