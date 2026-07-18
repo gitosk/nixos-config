@@ -17,7 +17,7 @@
     # Extra url's
 
     nvf.url = "github:NotAShelf/nvf";
-
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
   };
 
 
