@@ -2,13 +2,9 @@
 
 -- autostart
 hl.on("hyprland.start", function ()
-  hl.exec_cmd("hyprpanel")
-  hl.exec_cmd("cliphist")
-  hl.exec_cmd("clipse -listen")
-  hl.exec_cmd("systemctl --user start hyprpolkitagent")
-  hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-  hl.exec_cmd("wl-paste --type text --watch cliphist store")
-  hl.exec_cmd("wl-paste --type text --watch cliphist store")
+  hl.exec_cmd("dbus-update-activation-environment --systemd --all") -- ALLWAYS FIRST
+  hl.exec_cmd("noctalia")
+hl.exec_cmd("systemctl --user start hyprpolkitagent")
 end)
 
 -- environment variables
@@ -67,6 +63,23 @@ hl.monitor({
   scale = 1
 })
 
+-- testing noctalia
+
+local ipc = "noctalia msg "
+
+-- Core binds
+hl.bind("SUPER + SPACE", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
+hl.bind("SUPER + C", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
+hl.bind("SUPER + comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
+hl.bind("SUPER + N" , hl.dsp.exec_cmd(ipc .. "panel-toggle noctalia/notes:panel"))
+-- Media keys
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd(ipc .. "volume-up"))
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd(ipc .. "volume-down"))
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd(ipc .. "volume-mute"))
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd(ipc .. "brightness-up"))
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down"))
+
+
 -- settings.bind
 hl.bind("SUPER + F", hl.dsp.exec_cmd("firefox"))
 hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
@@ -76,10 +89,9 @@ hl.bind("SUPER + SHIFT + K", hl.dsp.window.kill())
 hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind("SUPER + SHIFT + L", hl.dsp.exit())
 hl.bind("SUPER + W",  hl.dsp.window.float())
-hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
+-- hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind("SUPER + A", hl.dsp.window.pseudo())
 hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
-hl.bind("SUPER + +", hl.dsp.exec_cmd("clipse -e 'clipse'"))
 hl.bind("SUPER + left", hl.dsp.focus({direction = "left"}))
 hl.bind("SUPER + right", hl.dsp.focus({direction = "right"}))
 hl.bind("SUPER + up", hl.dsp.focus({direction ="up"}))
@@ -150,12 +162,12 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })  -- SUPER
 
 -- multimedia binds, the {locked = true} lets the bind execute in locked screen
 
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), {locked = true})
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), {locked = true})
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), {locked = true})
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), {locked = true})
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), {locked = true})
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), {locked = true})
+--      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), {locked = true})
+--      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), {locked = true})
+--      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), {locked = true})
+--      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), {locked = true})
+--      hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), {locked = true})
+--      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), {locked = true})
 
 -- AESTETICS
 
@@ -177,10 +189,25 @@ hl.config({
     rounding = 7,
     rounding_power = 3,
     inactive_opacity = 0.95,
+
+    shadow = {
+      enabled = true,
+      range = 4,
+      render_power = 3,
+      color = 0xee1a1a1a,
+    },
+
+    blur = {
+      enabled = true,
+      size = 3,
+      passes = 2,
+      vibrancy = 0.1696,
+    },
   },
+
   dwindle = {
     smart_split = true,
-    preserve_split = true, 
+    preserve_split = true,
   },
   cursor = {
     inactive_timeout = 1.5,
@@ -237,11 +264,27 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 
 
+-- layer rules
 
+hl.layer_rule({
+  name = "noctalia",
+  match = {
+    namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$",
+  },
+  no_anim = true,
+  ignore_alpha = 0.5,
+  blur = true,
+  blur_popups = true,
+})
 
 
 -- window rules
 
+hl.window_rule({
+    match = { class = "dev.noctalia.Noctalia" },
+    float = true,
+    size = { 1080, 920 },
+})
 
 hl.window_rule({
   name = "dont maximize",
@@ -288,7 +331,7 @@ hl.window_rule({
 hl.window_rule({
   name = "firefox settings", -- bc weird in small sizes
   match = { initial_class = "^(firefox)" },
-  min_size = "720 862",
+--min_size = "720 862",
   opaque = true,
 })
 

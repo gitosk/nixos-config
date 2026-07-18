@@ -5,7 +5,6 @@
     # import system-level modules       
     self.nixosModules.omenModule
     self.nixosModules.myHomeManager
-
     ];
 
   };
@@ -21,6 +20,7 @@
 #         self.nixosModules.niri              
           self.nixosModules.gaming
           self.nixosModules.nvf
+          self.nixosModules.noctalia
     ];
 
 
@@ -174,8 +174,9 @@
        wget			# forgot :P
        git			# git
        unzip			# Unzip
+       yazi                     # File manager, best app ever.
        vlc
-       scarlett2          # For audio card recording
+       scarlett2                # For audio card recording
        alsa-scarlett-gui
        distrobox
     ];
