@@ -16,7 +16,7 @@
       size = 14;          
     };
     shellIntegration.enableFishIntegration = true;
-      themeFile = "Dracula";    
+      themeFile = "noctalia.conf";    
     settings = {
     
       wheel_scroll_min_lines = 1;
