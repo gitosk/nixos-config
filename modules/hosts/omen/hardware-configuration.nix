@@ -23,6 +23,11 @@
         options = [ "fmask=0077" "dmask=0077" ];
       };
 
+    fileSystems."/home/osk/Extra" = {
+      device = "/dev/disk/by-uuid/68de75f0-9095-427c-8a3c-ad1bcd2f0164";
+      fsType = "ext4";
+    };
+
     swapDevices =
       [ { device = "/dev/disk/by-uuid/886d9734-d445-4617-b418-14a939e0ba1c"; }
       ];

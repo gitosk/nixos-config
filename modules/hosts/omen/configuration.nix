@@ -178,7 +178,13 @@
        vlc
        scarlett2                # For audio card recording
        alsa-scarlett-gui
-       distrobox
+       distrobox 
+       aspell
+       aspellDicts.de
+       aspellDicts.es
+       aspellDicts.en
+       aspellDicts.en-computers
+       aspellDicts.en-science
     ];
     
 
