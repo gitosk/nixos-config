@@ -170,21 +170,22 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-       neovim			# editor 
-       wget			# forgot :P
-       git			# git
-       unzip			# Unzip
-       yazi                     # File manager, best app ever.
-       vlc
-       scarlett2                # For audio card recording
-       alsa-scarlett-gui
-       distrobox 
-       aspell
-       aspellDicts.de
-       aspellDicts.es
-       aspellDicts.en
-       aspellDicts.en-computers
-       aspellDicts.en-science
+      neovim			# editor 
+      wget			# forgot :P
+      git			# git
+      sshfs 
+      unzip			# Unzip
+      yazi                     # File manager, best app ever.
+      vlc
+      scarlett2                # For audio card recording
+      alsa-scarlett-gui
+      distrobox 
+      aspell
+      aspellDicts.de
+      aspellDicts.es
+      aspellDicts.en
+      aspellDicts.en-computers
+      aspellDicts.en-science
     ];
     
 
