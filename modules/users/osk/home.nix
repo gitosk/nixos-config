@@ -9,6 +9,7 @@
           home.username = "osk";
           home.homeDirectory = "/home/osk";
           home.stateVersion = "25.05";
+
         }
 
       ];

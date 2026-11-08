@@ -37,6 +37,9 @@
         # ------------- Computer specific config ----------
 
     hardware.nvidia = {
+      
+      # last version that supports Maxwell to Volta GPUs
+      branch = "legacy_580";
 
       # Modesetting is required.
       modesetting.enable = true; 

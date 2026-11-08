@@ -22,8 +22,10 @@
           self.nixosModules.nvf
           self.nixosModules.noctalia
     ];
-
-
+    nixpkgs.config.permittedInsecurePackages = [
+                  "firefox-esr-140-bin-unwrapped-140.17.0esr"
+                ];
+                
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
@@ -39,7 +41,6 @@
 
  
     services.flatpak.enable = true;  # For flatpak aplications
-    programs.firefox.enable = true;
 
 
         # ---------------- Virtualisation -------------
@@ -170,6 +171,7 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
+      firefox
       neovim			# editor 
       wget			# forgot :P
       git			# git
@@ -184,8 +186,6 @@
       aspellDicts.de
       aspellDicts.es
       aspellDicts.en
-      aspellDicts.en-computers
-      aspellDicts.en-science
     ];
     
 
