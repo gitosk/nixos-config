@@ -17,7 +17,7 @@
     imports = [
 #     self.nixosModules.YOURMODULES                  
 #     IMPORT YOUR HARDWARE CONFIGURATION HERE ALSO
-      ./hardware-configuration.nix
+      self.nixosModules.fwHardware
       self.nixosModules.hyprland
       self.nixosModules.gaming
       self.nixosModules.nvf
