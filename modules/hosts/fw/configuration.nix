@@ -17,13 +17,18 @@
     imports = [
 #     self.nixosModules.YOURMODULES                  
 #     IMPORT YOUR HARDWARE CONFIGURATION HERE ALSO
+      ./hardware-configuration.nix
+      self.nixosModules.hyprland
+      self.nixosModules.gaming
+      self.nixosModules.nvf
+      self.nixosModules.noctalia
     ];
 
     # Activate flakes feature
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     
     # Point the home-manager to your users           
-    home-manager.users.edu = self.homeModules.eduDefault;
+    home-manager.users.ca2324s= self.homeModules.ca2324sDefault;
 
 #      PASTE YOUR CONFIGURATION.NIX CONTENTS HERE
     
