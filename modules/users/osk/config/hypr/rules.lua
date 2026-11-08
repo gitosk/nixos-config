@@ -20,15 +20,6 @@ hl.window_rule({
 })
 
 hl.window_rule({
-  name = "Ensure you have a floating window of a set size",
-  match = {
-    class="clipse", -- not working 
-  },
-  float = true,
-  size = "622 652",
-})
-
-hl.window_rule({
   name = "set hardcoded Waydroid sizes",
   match = {
     class = "^(Waydroid|waydroid)"
@@ -44,6 +35,15 @@ hl.window_rule({
   match = { class = "^(firefox)" },
   min_size = "720 862",
   no_blur = true,
+})
+
+hl.window_rule({
+    name = "privacy-browsers-float",
+    match = { class = "^(Tor Browser|Mullvad Browser)$" },
+    float = true,
+    center = true,
+    fullscreen_state = "0 0",
+    suppress_event = "maximize",
 })
 
 hl.window_rule({match={class="discord"}, no_blur = true})

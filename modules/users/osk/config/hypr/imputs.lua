@@ -37,18 +37,18 @@ hl.bind("SUPER + T", hl.dsp.exec_cmd("kitty"))
 hl.bind("SUPER + D", hl.dsp.exec_cmd("kitty yazi"))
 hl.bind("SUPER + K", hl.dsp.window.close())
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.kill())
-hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind("SUPER + L", hl.dsp.exec_cmd("noctalia msg session lock"))
 hl.bind("SUPER + SHIFT + L", hl.dsp.exit())
 hl.bind("SUPER + W",  hl.dsp.window.float())
--- hl.bind("SUPER + SPACE", hl.dsp.exec_cmd("rofi -show drun"))
 hl.bind("SUPER + A", hl.dsp.window.pseudo())
 hl.bind("SUPER + S", hl.dsp.layout("togglesplit"))
+hl.bind("SUPER + Q", hl.dsp.layout("swapsplit"))
 hl.bind("SUPER + left", hl.dsp.focus({direction = "left"}))
 hl.bind("SUPER + right", hl.dsp.focus({direction = "right"}))
 hl.bind("SUPER + up", hl.dsp.focus({direction ="up"}))
 hl.bind("SUPER + down" , hl.dsp.focus({direction = "down"}))
-hl.bind("SUPER + Print" , hl.dsp.exec_cmd("hyprshot -m window --clipboard-only"))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+hl.bind("      + Print" , hl.dsp.exec_cmd("hyprshot -m active -m output --clipboard-only"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --output-folder ~/Pictures/Screenshots"))
 hl.bind("SUPER + V", hl.dsp.exec_cmd("kitty --class clipse -e 'clipse'"))
 hl.bind("SUPER + SHIFT + M", hl.dsp.window.move({ workspace = "special:magic" })) 
 hl.bind("SUPER + M", hl.dsp.workspace.toggle_special("magic"))
@@ -110,13 +110,3 @@ hl.config({
 })
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), { mouse = true })    -- SUPER + LMB: Move a window
 hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })  -- SUPER + RMB: Resize a window
-
--- multimedia binds, the {locked = true} lets the bind execute in locked screen
-
---      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), {locked = true})
---      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"), {locked = true})
---      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), {locked = true})
---      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"), {locked = true})
---      hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), {locked = true})
---      hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), {locked = true})
-
