@@ -12,11 +12,6 @@
       recursive = true;
       force = true;
     };
-    home.file.".config/hyprpanel" = { 
-      source =  ../config/hyprpanel;
-      recursive = true;
-      force = true;
-    };
 
   };              
 }
