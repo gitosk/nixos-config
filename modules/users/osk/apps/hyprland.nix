@@ -1,9 +1,6 @@
 { self, inputs, ... }: { 
 
   flake.homeModules.hyprland = {pkgs, config, ... }: {
-#    imports = [
-#      self.homeModules.hyprlock
-#    ];   
     
     wayland.windowManager.hyprland.systemd.enable = false;
 
@@ -11,6 +8,11 @@
       source =  ../config/hypr;
       recursive = true;
       force = true;
+    };
+    
+    home.file.".config/noctalia" = {
+      source = ../config/noctalia;
+
     };
 
   };              

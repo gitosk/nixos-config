@@ -1,0 +1,161 @@
+config_version = 19
+
+[bar.default]
+auto_hide = true
+background_opacity = 0.4999999888241291
+end = [
+    "tray",
+    "notifications",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "control-center",
+    "session"
+]
+margin_ends = 0
+position = "right"
+radius = 5
+reserve_space = false
+scale = 1.1000000089406967
+start = [ "launcher", "workspaces" ]
+thickness = 40
+
+[calendar]
+enabled = true
+
+    [calendar.account.oscarseiffert]
+    name = "Personal Calendar"
+    type = "google"
+
+[control_center]
+hidden_tabs = [ "media" ]
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[location]
+address = "Aachen, Germany"
+
+[lockscreen]
+fingerprint = false
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-login-box@HDMI-A-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 800.0
+    cy = 781.0
+    output = "HDMI-A-1"
+    placement_height = 900.0
+    placement_width = 1600.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 196.0
+    box_width = 720.0
+    cx = 640.0
+    cy = 601.0
+    output = "eDP-1"
+    placement_height = 720.0
+    placement_width = 1280.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_container"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_media_controls = true
+        show_password_reveal = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
+
+[plugin_settings."nightwatch75/file-search"]
+panel_open_near_click = false
+panel_placement = "floating"
+
+[plugin_settings."noctalia/notes"]
+extension = "typ"
+
+[plugins]
+enabled = [ "noctalia/notes" ]
+
+[shell]
+font_family = "Noto Sans"
+polkit_agent = true
+
+    [shell.panel]
+    launcher_placement = "attached"
+
+    [shell.screen_corners]
+    enabled = true
+    size = 19
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Everforest Alt"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "soft"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "kitty" ]
+
+[wallpaper]
+directory = "/home/osk/Pictures"
+fill_mode = "fit"
+
+    [wallpaper.default]
+    path = "/home/osk/Pictures/Fondo DST_2.png"
+
+    [wallpaper.last]
+    path = "/home/osk/Pictures/Fondo DST_2.png"
