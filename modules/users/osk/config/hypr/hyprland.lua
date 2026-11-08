@@ -173,6 +173,7 @@ hl.bind("SUPER + mouse:273", hl.dsp.window.resize(), { mouse = true })  -- SUPER
 
 hl.config({
   general = {
+    layout = "master",
     allow_tearing = false;
     gaps_in = 2,
     gaps_out = 5,
@@ -206,9 +207,16 @@ hl.config({
   },
 
   dwindle = {
-    smart_split = true,
+    force_split = 2,
     preserve_split = true,
+    use_active_for_splits = true,
   },
+
+  master = {
+    mfact = 0.5,
+    new_status = "master",
+  },
+
   cursor = {
     inactive_timeout = 1.5,
 --  no_hardware_cursors = true, -- should fix flickering
