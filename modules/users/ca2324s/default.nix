@@ -10,14 +10,14 @@
     
     imports = [     
       # Here you import your homeModules                   
-      self.homeModules.defaultApps
-      self.homeModules.hyprland
-      self.homeModules.gitedu    
-      self.homeModules.kitty
-      self.homeModules.sh
+      self.homeModules.eduHyprland
+      self.homeModules.eduKitty
+      self.homeModules.eduYazi
+      self.homeModules.eduGit
+      self.homeModules.eduSh
     ];
 
-    home.stateVersion = "25.11";
+    home.stateVersion = "26.05";
 
     home.packages = with pkgs; [
       # here you install your home-packages
